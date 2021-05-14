@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +20,36 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// AUTH NEW
+Route::post('/login/roles', [LoginController::class, 'selectRoles'])->name('selectRoles');
+Route::post('/login/admin', [LoginController::class, 'adminLogin'])->name('login.admin');
+Route::post('/login/siswa', [LoginController::class, 'siswaLogin'])->name('login.siswa');
+Route::post('/login/guru', [LoginController::class, 'guruLogin'])->name('login.guru');
+Route::post('/register/admin', [RegisterController::class, 'createAdmin'])->name('register.admin');
+Route::post('/register/siswa', [RegisterController::class, 'createSiswa'])->name('register.siswa');
+Route::post('/register/guru', [RegisterController::class, 'createGuru'])->name('register.guru');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout'); //LOGOUT
+
+// MIDDLEWARE
+
+// MIDDLEWARE ADMIN
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+});
+
+
+// MIDDLEWARE SISWA
+Route::group(['middleware' => 'auth:siswa'], function () {
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
+});
+
+// MIDDLEWARE GURU
+Route::group(['middleware' => 'auth:guru'], function () {
+    Route::get('/guru', [GuruController::class, 'index'])->name('guru');
 });
