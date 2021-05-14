@@ -14,7 +14,6 @@ $getAuthSiswa = auth()->guard('siswa')->user();
                 <div class="card-body">
                     Welcome Home
                     <h1>ADMIN {{ $getAuthAdmin->nama }}</h1>
-                    <a href="/register">Register User</a>
                 </div>
             </div>
         </div>

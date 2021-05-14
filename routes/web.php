@@ -41,13 +41,6 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout'); //LOGO
 // MIDDLEWARE ADMIN
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
-    // Regist Siswa
-    Route::get('/admin/siswa/register', [RegisterController::class, 'showSiswaRegisterForm'])->name('showSiswaRegisterForm');
-    Route::post('/admin/siswa/register', [RegisterController::class, 'createSiswa'])->name('register.siswa');
-    // Regist Guru
-    Route::get('/admin/guru/register', [RegisterController::class, 'showGuruRegisterForm'])->name('showGuruRegisterForm');
-    Route::post('/admin/guru/register', [RegisterController::class, 'createGuru'])->name('register.guru');
 });
 
 
