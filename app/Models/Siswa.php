@@ -16,10 +16,20 @@ class Siswa extends Authenticatable
     protected $guard = 'siswas';
 
     protected $fillable = [
-        'nama', 'username', 'password',
+        'nis', 'password', 'name', 'gender', 'born_date', 'born_place', 'address', 'phone', 'start_year', 'grade_id', 'classroom_id', 'status',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class, 'grade_id');
+    }
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class, 'classroom_id');
+    }
 }

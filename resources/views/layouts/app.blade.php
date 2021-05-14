@@ -80,11 +80,6 @@
         </nav>
 
         <main class="py-4">
-            @php
-            $getAuthGuru = auth()->guard('guru')->user();
-            $getAuthAdmin = auth()->guard('admin')->user();
-            $getAuthSiswa = auth()->guard('siswa')->user();
-            @endphp
             @yield('content')
         </main>
     </div>
