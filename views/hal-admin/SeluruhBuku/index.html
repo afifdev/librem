@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="../asset/style/dashStyle.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="librem">
+                <h2>Librem</h2>
+            </div>
+            <div class="search">
+                <input type="text" name="search" id="search" placeholder="search...">
+                <button class="btn-search">search</button>
+            </div>
+            <div class="profile">
+                <!-- <div class="avatar"><img src="../asset/img/Avatar.png" alt=""></div> -->
+                <div class="halo"><p>Halo, Selamat Siang<br>Pak doniiiii</p></div>
+            </div>
+        </nav>
+    </header>
+    <!-- End Header -->
+
+    <div class="container">
+        <!-- sidebar -->
+        <div class="sidebar">
+            <div class="link-sidebar">
+                <ul>
+                    <li><a href="../users/index.html"><span class="las la-users"></span>Users</a></li>
+                    <li><a href="index.html"><span class="las la-book-reader"></span>Books</a></li>
+                    <li><a href="../peminjam/index.html"><span class="las la-address-book"></span>Transactions</a></li>
+                    <li><a href="../tatatertib/index.html"><span class="las la-pencil-ruler"></span>Rules</a></li>
+                    <li><a href=""><span class="las la-sign-out-alt"></span>Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- End sidebar -->
+        <!-- content -->
+        <div class="content">
+            <div class="book-det">
+                <p><i class="fas fa-book-reader"></i>Seluruh Buku / Details</p>
+                <div class="drop-down">
+                    <select class="form-drop" name="category">
+                        <option value="Fiksi">Fiksi</option>
+                        <option value="Non-Fiksi">Non-Fiksi</option>
+                        <option value="Pelajaran">Pelajaran</option>
+                        <option value="Kamus">Kamus</option>
+                        <option value="Majalah">Majalah</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                    <select class="form-drop" name="kelas">
+                        <option value="10_mipa">10 MIPA</option>
+                        <option value="11_mipa">11 MIPA</option>
+                        <option value="12_mipa">12 MIPA</option>
+                        <option value="10_ips">10 MIPA</option>
+                        <option value="11_ips">11 MIPA</option>
+                        <option value="11_ips">12 MIPA</option>
+                    </select>
+                    <select class="form-drop" name="jenis_buku">
+                        <option value="B_indo">Bhs Indonesia</option>
+                        <option value="B_inggris">Bhs Inggris</option>
+                        <option value="biologi">Biologi</option>
+                        <option value="fisika">Fisika</option>
+                        <option value="kimia">Kimia</option>
+                        <option value="mtk">Matematika</option>
+                        <option value="sejarah">Sejarah</option>
+                        <option value="akutansi">Akutansi</option>
+                        <option value="sosiologi">Sosiologi</option>
+                        <option value="it">Tek Informatika</option>
+                    </select>
+                </div>
+            </div>
+            <!-- tabel -->
+            <div class="tabel-mem">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>KODE BUKU</th>
+                            <th>PENULIS</th>
+                            <th>PENERBIT</th>
+                            <th>JUDUL BUKU</th>
+                            <th>STOCK BUKU</th>
+                            <th>DESCRIPTION</th>
+                            <th colspan="2">AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>KB021</td>
+                            <td>Bambang Supriato</td>
+                            <td>Erlangga</td>
+                            <td>Matematika Murni</td>
+                            <td>50</td>
+                            <td>blablabla</td>
+                            <td colspan="2" class="col">
+                                <a href="ubahBuku.html" class="edit"><i class="fas fa-edit"></i></a>
+                                <a href="" class="del"><i class="fas fa-trash-alt bg-danger p-2"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- end tabel -->
+                <!-- Pagination  -->
+                <div class="foot">
+                    <div class="button">
+                        <a href="tambahBuku.html">Tambah</a>
+                        <a href="">Delete</a>
+                    </div>
+                    <div class="page">
+                        <a href="" class="page-link">&laquo;</a>
+                        <a href="" class="page-link">1</a>
+                        <a href="" class="page-link">&raquo;</a>
+                    </div>
+                </div>
+                <!-- End Pagination  -->
+            </div>
+        </div>
+        <!-- End Content -->
+    </div>
+    
+</body>
+</html>
