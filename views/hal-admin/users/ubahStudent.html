@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Students</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="../asset/style/memStyle.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="librem">
+                <h2>Librem</h2>
+            </div>
+            <div class="search">
+                <input type="text" name="search" id="search" placeholder="search...">
+                <button class="btn-search">search</button>
+            </div>
+            <div class="profile">
+                <!-- <div class="avatar"><img src="../asset/img/Avatar.png" alt=""></div> -->
+                <div class="halo"><p>Halo, Selamat Siang<br>Pak doniiiii</p></div>
+            </div>
+        </nav>
+    </header>
+    <!-- End Header -->
+
+    <div class="container">
+        <!-- sidebar -->
+        <div class="sidebar">
+            <div class="link-sidebar">
+                <ul>
+                    <li><a href="index.html"><span class="las la-users"></span>Users</a></li>
+                    <li><a href="../SeluruhBuku/index.html"><span class="las la-book-reader"></span>Books</a></li>
+                    <li><a href="../peminjam/index.html"><span class="las la-address-book"></span>Transactions</a></li>
+                    <li><a href="../tatatertib/index.html"><span class="las la-pencil-ruler"></span>Rules</a></li>
+                    <li><a href=""><span class="las la-sign-out-alt"></span>Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- End sidebar -->
+        <!-- content -->
+        <div class="content">
+            <div class="mem-new">
+                <p><i class="fas fa-user-friends"></i>Edit Data Siswa</p>
+            </div>
+            <div class="myform2-edit">
+                <form action="">
+                    <div class="form-left">
+                        <div class="row-tab">
+                            <label for="NIS">NIS</label>
+                            <input type="number" name="NIS" id="NIS" placeholder="NIS STUDENT" value="1234555">
+                        </div>
+                        <div class="row-tab">
+                            <label for="password">PASSWORD</label>
+                            <input type="text" name="password" id="password" placeholder="PASSWORD" value="akudewe">
+                        </div>
+                        <div class="row-tab">
+                            <label for="name">NAME</label>
+                            <input type="text" name="name" id="name" placeholder="NAME" value="mawar">
+                        </div>
+                        <div class="row-tab">
+                            <label for="gender">GENDER</label>
+                            <input type="text" name="gender" id="gender" placeholder="GENDER" value="L">
+                        </div>
+                        <div class="row-tab">
+                            <label for="born_date">BORN_DATE</label>
+                            <input type="date" name="born_date" id="born_date" placeholder="BORN_DATE" value="13-04-2001">
+                        </div>
+                        <div class="row-tab">
+                            <label for="born_place">BORN_PLACE</label>
+                            <input type="text" name="born_place" id="born_place" placeholder="BORN_PLACE" value="Mojosari">
+                        </div>
+                        <button type="submit">Simpan</button>
+                        <button class="cancel"><a href="index.html">Cancel</a></button>
+                    </div>
+                    <div class="form-right">
+                        <div class="row-tab">
+                            <label for="address">ADDRESS</label>
+                            <input type="text" name="address" id="adress" placeholder="ADDRESS" value="Jl. No3 Mojosari">
+                        </div>
+                        <div class="row-tab">
+                            <label for="phone">PHONE</label>
+                            <input type="number" name="phone" id="phone" placeholder="PHONE" value="0852306098979">
+                        </div>
+                        <div class="row-tab">
+                            <label for="start_year">START_YEAR</label>
+                            <input type="text" name="start_year" id="start_year" placeholder="START_YEAR" value="2016">
+                        </div>
+                        <div class="row-tab">
+                            <label for="grade_id">GRADE_ID</label>
+                            <input type="text" name="grade_id" id="grade_id" placeholder="GREADE_ID" value="2018">
+                        </div>
+                        <div class="row-tab">
+                            <label for="class_id">CLASS_ID</label>
+                            <input type="text" name="class_id" id="class_id" placeholder="CLASS_ID" value="MIPA2">
+                        </div>
+                        <div class="row-tab">
+                            <label for="status">STATUS</label>
+                            <input type="text" name="status" id="status" placeholder="STATUS" value="Terdaftar">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- tabel -->
+        </div>
+        <!-- End Content -->
+    </div>
+    
+</body>
+</html>

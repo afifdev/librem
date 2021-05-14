@@ -1,0 +1,131 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+/* Header */
+header{
+    background-color: #8052AD;
+    padding: 10px;
+}
+header nav{
+    display: flex;
+    justify-content: space-between;
+}
+.librem{
+    display: flex;
+}
+.librem h2{
+    color: white;
+    padding: 4px 0 4px 40px;
+    font-size: 35px;
+}
+.search input{
+    width: 70vh;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 7px;
+    border: none;
+}
+.search .btn-search{
+    border:none;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.profile{
+    display: flex;
+}
+.profile .avatar{
+    flex-basis: 20%;
+    margin-right: 13px;
+}
+.profile .avatar img{
+    width: 100%;
+}
+.profile .halo{
+    flex-basis: 80%;
+    font-size: 12px;
+}
+.profile .halo p{
+    width: 100%;
+    color: white;
+    margin-top: 7px;
+}
+/* End Header */
+
+/* sidebar */
+.container{
+    display: flex;
+}
+.sidebar{
+    flex-basis: 23%;
+    background-color: #C7BDDB;
+    height: 89.7vh;
+}
+.link-sidebar{
+    /* border: 2px solid black; */
+    width: 80%;
+    margin: auto;
+}
+.link-sidebar ul li{
+    list-style-type: none;
+    margin: 60px 0 0 0;
+}
+
+.link-sidebar ul li a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #8B74BD;
+    /* border: 2px solid black; */
+}
+.link-sidebar ul li span{
+    padding-right: 10px;
+}
+.link-sidebar ul li a:hover{
+    color: #663399;
+}
+/* End sidebar */
+
+/* content */
+.content{
+    width:77%;
+    display: flex;
+}
+.tata-tertib,.denda{
+    background-color: #EFDFFE;
+    flex-basis: 70%;
+    margin: 2rem 0 2rem 3rem;
+    border-radius: 20px;
+}
+.etika,.visi-misi,.tujuan{
+    margin: 2rem 2rem;
+}
+.etika h4,.visi-misi h4,.tujuan h4{
+    font-size: 18px;
+}
+.etika ul li,.visi-misi ul li, .tujuan ul li{
+    padding: 4px;
+}
+.denda{
+    flex-basis: 30%;
+    margin-right: 3rem;
+    padding: 2rem 2rem;
+}
+.denda h4{
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+.denda p{
+    padding-bottom: 0.5rem ;
+}
+/* layar 1024 */
+@media screen and (max-width:1024px) {
+    .search input{
+        width: 50vh;
+    }
+    
+    .link-sidebar ul li a{
+        font-size: 15px;
+    }
+}
