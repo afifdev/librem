@@ -9,7 +9,7 @@ class HomeController extends Controller
     // localhost:8000/
     public function index()
     {
-        $pathImage = '/storage/images/assets/home/';
+        $pathImage = 'images/home/';
         return view('Home.index', compact('pathImage'));
     }
 
