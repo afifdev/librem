@@ -23,6 +23,3 @@ Route::get('/admin/book/:id/edit', [BookController::class, 'edit'])->name('bookE
 
 Route::get('/rule', [RuleController::class, 'index'])->name('rule');
 Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit'); 
-Route::get('/', function () {
-    return view('welcome');
-});
