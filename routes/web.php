@@ -12,7 +12,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/login/roles', [LoginController::class, 'selectRoles'])->name('selectRoles');
-Route::get('/logout', [LoginController::class, 'logout'])->name('<logout></logout>');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // MIDDLEWARE
 
