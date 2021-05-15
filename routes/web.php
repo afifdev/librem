@@ -22,4 +22,8 @@ Route::get('/admin/book/:id', [BookController::class, 'detail'])->name('bookDeta
 Route::get('/admin/book/:id/edit', [BookController::class, 'edit'])->name('bookEdit');
 
 Route::get('/rule', [RuleController::class, 'index'])->name('rule');
+<<<<<<< HEAD
 Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit');
+=======
+Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit'); 
+>>>>>>> 239118973d32cdeca750789f0e0853c17875ca15
