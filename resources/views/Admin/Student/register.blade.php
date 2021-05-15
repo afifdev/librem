@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
-@section('content')
+@section('customStyle')
+<link href="{{ asset('css/nafis/memStyle.css') }}" rel="stylesheet">
+<link rel="stylesheet"
+    href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+@stop
 
+@section('content')
+<!-- Header -->
+<header>
+    @include('layouts.navigation')
+</header>
+<!-- End Header -->
 <div class="container mt-5">
     <!-- sidebar -->
-    <div class="sidebar">
-        <div class="link-sidebar">
-            <ul>
-                <li><a href="index.html"><span class="las la-users"></span>Users</a></li>
-                <li><a href="../SeluruhBuku/index.html"><span class="las la-book-reader"></span>Books</a></li>
-                <li><a href="../peminjam/index.html"><span class="las la-address-book"></span>Transactions</a></li>
-                <li><a href="../tatatertib/index.html"><span class="las la-pencil-ruler"></span>Rules</a></li>
-                <li><a href=""><span class="las la-sign-out-alt"></span>Log out</a></li>
-            </ul>
-        </div>
-    </div>
+    @include('layouts.sidebar')
     <!-- End sidebar -->
     <!-- content -->
     <div class="content">
@@ -37,7 +38,7 @@
                     <input type="text" name="born_place" id="born_place" placeholder="BORN_PLACE">
                     <br>
                     <button type="submit">Tambah</button>
-                    <button class="cancel"><a href="index.html">Cancel</a></button>
+                    <button class="cancel"><a href="{{ route('student') }}">Cancel</a></button>
                 </div>
                 <div class="form-right">
                     <input type="text" name="address" id="adress" placeholder="ADDRESS">

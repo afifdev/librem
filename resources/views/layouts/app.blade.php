@@ -9,16 +9,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/indah/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fitri/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/nafis/memStyle.css') }}" rel="stylesheet">
+    @yield('customStyle')
+    {{-- <link href="{{ asset('css/fitri/style.css') }}" rel="stylesheet"> --}}
 </head>
 
 <body>
     <div id="app">
         {{-- Navigation --}}
+        @if (!auth()->guard('admin')->check())
         @include('layouts.navigation')
-        <main class="py-4">
+        @endif
+        <main>
             @yield('content')
         </main>
     </div>

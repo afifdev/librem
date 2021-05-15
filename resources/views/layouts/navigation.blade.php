@@ -1,3 +1,20 @@
+@if (auth()->check())
+<nav>
+    <div class="librem">
+        <h2>Librem</h2>
+    </div>
+    <div class="search">
+        <input type="text" name="search" id="search" placeholder="search...">
+        <button class="btn-search">search</button>
+    </div>
+    <div class="profile">
+        <!-- <div class="avatar"><img src="../asset/img/Avatar.png" alt=""></div> -->
+        <div class="halo">
+            <p>Halo, Selamat Siang<br>Pak doniiiii</p>
+        </div>
+    </div>
+</nav>
+@else
 <!-- Navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-light custom-nav">
     <div class="container-fluid">
@@ -22,3 +39,4 @@
     </div>
 </nav>
 <!-- Akhir Navbar -->
+@endif

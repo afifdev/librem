@@ -1,5 +1,8 @@
 @extends('layouts/app')
 
+@section('customStyle')
+<link href="{{ asset('css/indah/style.css') }}" rel="stylesheet">
+@stop
 
 @section('content')
 
