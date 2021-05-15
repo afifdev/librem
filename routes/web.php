@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{BookController, HomeController, RuleController, StudentController, TransactionController, UserController};
 
-Route::get('/', [HomeContoller::class, 'index'])->name('homepage');
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 Route::get('/admin/transaction', [TransactionController::class, 'index'])->name('transaction');
