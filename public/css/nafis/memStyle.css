@@ -1,0 +1,210 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+/* Header */
+header{
+    background-color: #8052AD;
+    padding: 10px;
+}
+header nav{
+    display: flex;
+    justify-content: space-between;
+}
+.librem{
+    display: flex;
+}
+.librem h2{
+    color: white;
+    padding: 4px 0 4px 40px;
+    font-size: 35px;
+}
+.search input{
+    width: 70vh;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 7px;
+    border: none;
+}
+.search .btn-search{
+    border:none;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.profile{
+    display: flex;
+}
+.profile .avatar{
+    flex-basis: 20%;
+    margin-right: 13px;
+}
+.profile .avatar img{
+    width: 100%;
+}
+.profile .halo{
+    flex-basis: 100%;
+    font-size: 13px;
+}
+.profile .halo p{
+    width: 100%;
+    color: white;
+    margin-top: 10px;
+}
+/* End Header */
+
+/* sidebar */
+.container{
+    display: flex;
+}
+.sidebar{
+    flex-basis: 23%;
+    background-color: #C7BDDB;
+    height: 89.7vh;
+}
+.link-sidebar{
+    /* border: 2px solid black; */
+    width: 80%;
+    margin: auto;
+}
+.link-sidebar ul li{
+    list-style-type: none;
+    margin: 60px 0 0 0;
+}
+
+.link-sidebar ul li a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #8B74BD;
+    /* border: 2px solid black; */
+}
+.link-sidebar ul li span{
+    padding-right: 10px;
+}
+.link-sidebar ul li a:hover{
+    color: #663399;
+}
+/* End sidebar */
+
+/* content */
+.content{
+    width:77%;
+}
+
+.mem-new{
+    margin-top: 50px;
+}
+.mem-new p{
+    margin: 20px 0 0 40px;
+    padding-left: 20px;
+    font-size: 26px;
+}
+.mem-new p i{
+    margin-right: 15px;
+}
+.mem-new a{
+    background-color: #8052AD;
+    color:#fff;
+    padding: 10px 10px 0 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 0 40px 0 40px;
+}
+/* tabel */
+form, .myform-edit form,.isi-content{
+    display: flex;
+    padding: 10px 30px 30px 60px;
+}
+.form-left,.form-right,.content-left,.content-right{
+    flex-basis: 50%;
+}
+.myform input,.myform2 input,.myform textarea, .myform-edit input,.myform2-edit input, .myform-edit textarea{
+    margin-top: 30px;
+    padding: 17px;
+    border: none;
+    background-color: #C7BDDB;
+    width: 80%;
+    border-radius: 15px;
+    outline: none;
+}
+.myform2 input, .myform2-edit input{
+    margin-top: 16px;
+    padding: 14px;
+}
+.row-tab{
+    display: flex;
+}
+.content-left .card-content,.content-right .card-content{
+    display: flex;
+    background-color: #8B74BD;
+    padding: 15px;
+    margin-top: 1rem;
+    border-radius: 20px 0 0 20px;
+}
+.content-right .card-content{
+    border-radius: 0 20px 20px 0;
+    border-left:1px dashed black ;
+}
+.card-content:first-child,.card-image{
+    margin-top: 20px;
+}
+.myform-edit label, .myform2-edit label{
+    flex-basis: 30%;
+    margin-top: 3rem;
+}
+.content-left h4,.content-right h4{
+    flex-basis: 50%;
+}
+.myform2-edit label{
+    font-size: 13px;
+    margin-top: 2rem;
+}
+.myform-edit .form-right label,.myform2-edit .form-right label{
+    margin-left: 2rem;
+}
+.myform-edit input,.myform2-edit input{
+    flex-basis: 80%;
+}
+.myform button, .myform-edit button,.myform2 button, .myform2-edit button,.isi-content button{
+    margin-top: 40px;
+    width: 20%;
+    border: none;
+    padding: 7px;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #000;
+    background-color: #995DD6;
+    cursor: pointer;
+}
+.myform2 button, .myform2-edit button{
+    margin-top:20px;
+}
+.myform button a,.myform-edit button a,.myform2 button a,.myform2-edit button a,.isi-content button a{
+    text-decoration: none;
+    color: #000;
+}
+.myform .cancel, .myform-edit .cancel,.myform2 .cancel, .myform2-edit .cancel{
+    background-color: #f5423b;
+}
+
+/* end tabel */
+/* layar 1024 */
+@media screen and (max-width:1024px) {
+    .search input{
+        width: 50vh;
+    }
+    
+    .link-sidebar ul li a{
+        font-size: 15px;
+    }
+    .myform-edit label,.myform2-edit label{
+        font-size: 12px;
+    }
+    .myform-edit input,.myform2-edit input{
+        flex-basis: 60%;
+    }
+    .myform input,.myform2 input,.myform textarea, .myform-edit input,.myform2-edit input, .myform-edit textarea{
+        width: 60%;
+    }
+}

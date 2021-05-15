@@ -1,29 +1,61 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BookController, HomeController, RuleController, StudentController, TransactionController, UserController};
+use App\Http\Controllers\{AdminController, BookController, HomeController, RuleController, StudentController, TeacherController, TransactionController, UserController};
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-Route::get('/admin/transaction', [TransactionController::class, 'index'])->name('transaction');
-Route::get('/admin/transaction/register', [TransactionController::class, 'register'])->name('transRegister');
-Route::get('/admin/transaction/:id', [TransactionController::class, 'detail'])->name('transDetail');
-Route::get('/admin/transaction/:id/edit', [TransactionController::class, 'edit'])->name('transEdit');
 
-Route::get('/admin/student', [StudentController::class, 'index'])->name('student');
-Route::get('/admin/student/register', [StudentController::class, 'register'])->name('studentRegister');
-Route::get('/admin/student/:id', [StudentController::class, 'detail'])->name('studentDetail');
-Route::get('/admin/student/:id/edit', [StudentController::class, 'edit'])->name('studentEdit');
 
-Route::get('/admin/book', [BookController::class, 'index'])->name('book');
-Route::get('/admin/book/register', [BookController::class, 'register'])->name('bookRegister');
-Route::get('/admin/book/:id', [BookController::class, 'detail'])->name('bookDetail');
-Route::get('/admin/book/:id/edit', [BookController::class, 'edit'])->name('bookEdit');
 
-Route::get('/rule', [RuleController::class, 'index'])->name('rule');
-<<<<<<< HEAD
-Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit');
-=======
-Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit'); 
->>>>>>> 239118973d32cdeca750789f0e0853c17875ca15
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::post('/login/roles', [LoginController::class, 'selectRoles'])->name('selectRoles');
+Route::get('/logout', [LoginController::class, 'logout'])->name('<logout></logout>');
+
+// MIDDLEWARE
+
+// MIDDLEWARE ADMIN
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+    Route::get('/admin/transaction', [TransactionController::class, 'index'])->name('transaction');
+    Route::get('/admin/transaction/register', [TransactionController::class, 'register'])->name('transRegister');
+    Route::get('/admin/transaction/:id', [TransactionController::class, 'detail'])->name('transDetail');
+    Route::get('/admin/transaction/:id/edit', [TransactionController::class, 'edit'])->name('transEdit');
+
+    Route::get('/admin/student', [StudentController::class, 'index'])->name('student');
+    Route::get('/admin/student/register', [StudentController::class, 'register'])->name('studentRegister');
+    Route::get('/admin/student/:id', [StudentController::class, 'detail'])->name('studentDetail');
+    Route::get('/admin/student/:id/edit', [StudentController::class, 'edit'])->name('studentEdit');
+
+    Route::get('/admin/teacher', [TeacherController::class, 'index'])->name('teacher');
+    Route::get('/admin/teacher/register', [TeacherController::class, 'register'])->name('teacherRegister');
+    Route::get('/admin/teacher/:id', [TeacherController::class, 'detail'])->name('teacherDetail');
+    Route::get('/admin/teacher/:id/edit', [TeacherController::class, 'edit'])->name('teacherEdit');
+
+    Route::get('/admin/book', [BookController::class, 'index'])->name('book');
+    Route::get('/admin/book/register', [BookController::class, 'register'])->name('bookRegister');
+    Route::get('/admin/book/:id', [BookController::class, 'detail'])->name('bookDetail');
+    Route::get('/admin/book/:id/edit', [BookController::class, 'edit'])->name('bookEdit');
+
+    Route::get('/rule', [RuleController::class, 'index'])->name('rule');
+    Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit');
+});
+
+
+// MIDDLEWARE SISWA
+Route::group(['middleware' => 'auth:student'], function () {
+    Route::get('/student', [StudentController::class, 'index'])->name('siswa');
+});
+
+
+// MIDDLEWARE GURU
+Route::group(['middleware' => 'auth:teacher'], function () {
+    Route::get('/teacher', [TeacherController::class, 'index'])->name('guru');
+});
+
+
+
+Auth::routes();

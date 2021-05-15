@@ -7,10 +7,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teacher extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
 
-    protected $guard = 'teachers';
+    protected $guard = 'admins';
+
+    protected $fillable = [
+        'nama', 'username', 'password',
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
