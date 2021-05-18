@@ -13,14 +13,4 @@ class Student extends Authenticatable
     use Notifiable;
 
     protected $guard = 'students';
-
-
-    public function grade()
-    {
-        return $this->belongsTo(Grade::class);
-    }
-    public function major()
-    {
-        return $this->belongsTo(Major::class);
-    }
 }
