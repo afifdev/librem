@@ -21,6 +21,7 @@ class CreateDetailsTable extends Migration
             $table->date('due_date');
             $table->date('return_date');
             $table->string('penalty');
+            $table->string('debt_collected');
             $table->string('detail');
             $table->timestamps();
         });
