@@ -6,17 +6,12 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/login', [LoginController::class, 'viewLogin'])->name('login');
+Route::post('/login', [LoginController::class, 'postLogin'])->name('postLogin');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
-
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::post('/login/roles', [LoginController::class, 'selectRoles'])->name('selectRoles');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
-// MIDDLEWARE
-
-// MIDDLEWARE ADMIN
+Auth::routes();
+// If Login as Admin
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
@@ -44,18 +39,12 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit');
 });
 
-
-// MIDDLEWARE SISWA
+// If Login as Student
 Route::group(['middleware' => 'auth:student'], function () {
     Route::get('/student', [StudentController::class, 'index'])->name('siswa');
 });
 
-
-// MIDDLEWARE GURU
+// If Login as Teacher
 Route::group(['middleware' => 'auth:teacher'], function () {
     Route::get('/teacher', [TeacherController::class, 'index'])->name('guru');
 });
-
-
-
-Auth::routes();
