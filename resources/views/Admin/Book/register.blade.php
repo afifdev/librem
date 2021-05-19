@@ -33,6 +33,7 @@
         <option value="" hidden>Kosong</option>
         @endforelse
     </select>
+    <input type="text" name="custom_category" placeholder="Kategori Lain">
     @if ($errors->has('category_id'))
     <span class="text-danger">{{ $errors->first('category_id') }}</span>
     @endif
@@ -46,6 +47,7 @@
         <option value="" hidden>Kosong</option>
         @endforelse
     </select>
+    <input type="text" name="custom_writer" placeholder="Writer Lain">
     @if ($errors->has('writer_id'))
     <span class="text-danger">{{ $errors->first('writer_id') }}</span>
     @endif
@@ -53,12 +55,28 @@
 
     <label for="publisher_id">Choose a Publisher:</label>
     <select name="publisher_id" id="publisher_id">
+        {{-- Option ini akan mempunyai value tambah jika ingin tambah data --}}
+        <option value="tambah">Tambah</option>
+
         @forelse ($publishers as $publisher)
         <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
         @empty
         <option value="" hidden>Kosong</option>
         @endforelse
     </select>
+    <input type="text" name="custom_publisher_name" placeholder="Name">
+    @if ($errors->has('custom_publisher_name'))
+    <span class="text-danger">{{ $errors->first('custom_publisher_name') }}</span>
+    @endif
+    <input type="text" name="custom_publisher_year" placeholder="Year">
+    @if ($errors->has('custom_publisher_year'))
+    <span class="text-danger">{{ $errors->first('custom_publisher_year') }}</span>
+    @endif
+    <input type="text" name="custom_publisher_city" placeholder="City">
+    @if ($errors->has('custom_publisher_city'))
+    <span class="text-danger">{{ $errors->first('custom_publisher_city') }}</span>
+    @endif
+
     @if ($errors->has('publisher_id'))
     <span class="text-danger">{{ $errors->first('publisher_id') }}</span>
     @endif
