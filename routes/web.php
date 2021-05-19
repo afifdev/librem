@@ -5,6 +5,8 @@ use App\Http\Controllers\{AdminController, BookController, HomeController, RuleC
 use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
+Route::get('/books/{kind}', [HomeController::class, 'show'])->name('show_books');
+Route::post('/books/{kind}', [HomeController::class, 'handleSearch'])->name('search_books');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/login', [LoginController::class, 'viewLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'postLogin'])->name('postLogin');
