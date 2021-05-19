@@ -1,9 +1,9 @@
 @if(session()->has('success'))
 <p> {{ session()->get('success') }}</p>
 @endif
-<form action=" {{ route('bookStore') }}" method="post" enctype="multipart/form-data">
+<form action=" {{ route('bookUpdate', $book->id) }}" method="post" enctype="multipart/form-data">
     @csrf
-    @method('post')
+    @method('patch')
 
     <label for="code">Kode Buku :</label>
     <input type="text" name="code">
@@ -15,7 +15,11 @@
     <label for="kind_id">Choose a Kindbook:</label>
     <select name="kind_id" id="kind_id">
         @forelse ($kinds as $kind)
+        @if ($kind->id === $book->kind_id)
+        <option value="{{ $book->kind_id }}" selected>{{ $kind->name }}</option>
+        @else
         <option value="{{ $kind->id }}">{{ $kind->name }}</option>
+        @endif
         @empty
         <option value="" hidden>Kosong</option>
         @endforelse
@@ -88,7 +92,7 @@
     <label for="description">Description:</label>
     <input type="text" name="description">
     @if ($errors->has('description'))
-    <span class="text-danger">{{ $errors->first('description') }}</span>
+    <span class=" text-danger">{{ $errors->first('description') }}</span>
     @endif
     <br>
 
@@ -99,6 +103,17 @@
     @endif
     <br>
 
+    {{-- Hidden Avaibilaibility --}}
+    <label for="availability">Avaibility:</label>
+    <select name="availability" id="availability">
+        <option value="1">Tersedia</option>
+        <option value="0">Habis</option>
+    </select>
+    @if ($errors->has('availability'))
+    <span class="text-danger">{{ $errors->first('availability') }}</span>
+    @endif
+    <br>
+
     <label for="isbn">ISBN :</label>
     <input type="text" name="isbn">
     @if ($errors->has('isbn'))
@@ -106,10 +121,5 @@
     @endif
     <br>
 
-    {{-- Hidden Avaibilaibility --}}
-    <input name="avalaibility" value="1" hidden>
-    @if ($errors->has('avalaibility'))
-    <span class="text-danger">{{ $errors->first('avalaibility') }}</span>
-    @endif
-    <button type="submit">Tambah</button>
+    <button type="submit">Edit</button>
 </form>

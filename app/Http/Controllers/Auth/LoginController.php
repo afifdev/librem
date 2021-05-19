@@ -44,7 +44,7 @@ class LoginController extends Controller
         $this->middleware('guest:teacher')->except('logout');
     }
 
-    public function selectRoles(Request $request)
+    public function postLogin(Request $request)
     {
         if ($request->roles == 'admin') {
             return $this->adminLogin($request);
@@ -55,6 +55,11 @@ class LoginController extends Controller
         if ($request->roles == 'teacher') {
             return $this->teacherLogin($request);
         }
+    }
+
+    public function viewLogin()
+    {
+        return view('auth.login');
     }
 
     // ADMIN
