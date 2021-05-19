@@ -31,8 +31,11 @@ Route::get('/admin/student/:id/edit', [StudentController::class, 'edit'])->name(
 
 Route::get('/admin/teacher', [TeacherController::class, 'index'])->name('teacher');
 Route::get('/admin/teacher/register', [TeacherController::class, 'register'])->name('teacherRegister');
-Route::get('/admin/teacher/:id', [TeacherController::class, 'detail'])->name('teacherDetail');
-Route::get('/admin/teacher/:id/edit', [TeacherController::class, 'edit'])->name('teacherEdit');
+Route::get('/admin/teacher/{teacher:id}', [TeacherController::class, 'detail'])->name('teacherDetail');
+Route::get('/admin/teacher/{teacher:id}/edit', [TeacherController::class, 'edit'])->name('teacherEdit');
+Route::post('/admin/teacher/store', [TeacherController::class, 'store'])->name('teacherStore');
+Route::patch('/admin/teacher/{teacher:id}/update', [TeacherController::class, 'update'])->name('teacherUpdate');
+Route::delete('/admin/teacher/{teacher:id}/delete', [TeacherController::class, 'delete'])->name('teacherDelete');
 
 Route::get('/admin/book', [BookController::class, 'index'])->name('book');
 Route::get('/admin/book/register', [BookController::class, 'register'])->name('bookRegister');

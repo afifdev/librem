@@ -66,6 +66,34 @@ class BookController extends Controller
     {
         $attr = $request->all();
 
+        // CUSTOM CATEGORY
+        $kind_id = $request->kind_id;
+        if ($request->custom_category) {
+            Category::create([
+                'kind_id' => $kind_id,
+                'name' => $request->custom_category,
+            ]);
+            $attr['category_id'] = DB::getPdo()->lastInsertId();;
+        }
+
+        // CUSTOM WRITER
+        if ($request->custom_writer) {
+            Writer::create([
+                'name' => $request->custom_writer,
+            ]);
+            $attr['writer_id'] = DB::getPdo()->lastInsertId();
+        }
+
+        // CUSTOM PUBLISHER
+        if ($request->publisher_id === 'tambah') {
+            Publisher::create([
+                'name' => $request->custom_publisher_name,
+                'year' => $request->custom_publisher_year,
+                'city' => $request->custom_publisher_city,
+            ]);
+            $attr['publisher_id'] = DB::getPdo()->lastInsertId();
+        }
+
         // GRADE
         if ($request->grade_id === 0) {
             $attr['grade_id'] = null;
@@ -81,6 +109,8 @@ class BookController extends Controller
         return redirect()->route('bookRegister')
             ->with('success', 'Buku Berhasil Ditambahkan');
     }
+
+
     public function update(UpdateBookRequest $request, Book $book)
     {
         $attr = $request->all();
