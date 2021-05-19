@@ -20,7 +20,7 @@ class CreateTeachersTable extends Migration
             $table->string('name');
             $table->boolean('gender');
             $table->date('born_date');
-            $table->date('born_place');
+            $table->string('born_place');
             $table->string('address');
             $table->string('phone');
             $table->timestamps();

@@ -19,9 +19,9 @@ class CreateDetailsTable extends Migration
             $table->string('type');
             $table->date('take_date');
             $table->date('due_date');
-            $table->date('return_date');
-            $table->string('penalty');
-            $table->string('debt_collected');
+            $table->date('return_date')->nullable();
+            $table->string('penalty')->nullable();
+            $table->string('debt_collected')->nullable();
             $table->string('detail');
             $table->timestamps();
         });

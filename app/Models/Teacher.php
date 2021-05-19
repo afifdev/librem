@@ -13,4 +13,7 @@ class Teacher extends Authenticatable
     use Notifiable;
 
     protected $guard = 'teachers';
+    protected $fillable = [
+        'nip', 'password', 'name', 'gender', 'born_date', 'born_place', 'address', 'phone'
+    ];
 }

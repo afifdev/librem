@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->date('start_year');
             $table->foreignId('grade_id');
             $table->integer('major_id');
+            $table->boolean('graduated')->default(0);
             $table->timestamps();
         });
     }
