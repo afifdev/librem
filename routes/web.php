@@ -52,7 +52,8 @@ Route::patch('/admin/book/{book:id}/update', [BookController::class, 'update'])-
 Route::delete('/admin/book/{book:id}/delete', [BookController::class, 'delete'])->name('bookDelete');
 
 Route::get('/rule', [RuleController::class, 'index'])->name('rule');
-Route::put('/rule', [RuleController::class, 'update'])->name('rule_update');
+Route::post('/rule', [RuleController::class, 'create'])->name('rule_register');
+Route::put('/rule/{id}', [RuleController::class, 'updateAndDelete'])->name('rule_update');
 // });
 
 // If Login as Student
