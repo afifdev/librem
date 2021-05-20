@@ -20,9 +20,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/admin/transaction', [TransactionController::class, 'index'])->name('transaction');
-Route::get('/admin/transaction/register', [TransactionController::class, 'register'])->name('transRegister');
-Route::get('/admin/transaction/:id', [TransactionController::class, 'detail'])->name('transDetail');
-Route::get('/admin/transaction/:id/edit', [TransactionController::class, 'edit'])->name('transEdit');
+Route::post('/admin/transaction', [TransactionController::class, 'search'])->name('trans_search');
+Route::get('/admin/transaction/register', [TransactionController::class, 'register'])->name('trans_register');
+Route::post('/admin/transaction/register', [TransactionController::class, 'create'])->name('trans_create');
+Route::get('/admin/transaction/{id}', [TransactionController::class, 'show'])->name('trans_show');
+Route::put('/admin/transaction/{id}', [TransactionController::class, 'update'])->name('trans_update');
+Route::delete('/admin/transaction/{id}', [TransactionController::class, 'delete'])->name('trans_delete');
 
 Route::get('/admin/student', [StudentController::class, 'index'])->name('student');
 Route::get('/admin/student/register', [StudentController::class, 'register'])->name('studentRegister');
@@ -49,7 +52,7 @@ Route::patch('/admin/book/{book:id}/update', [BookController::class, 'update'])-
 Route::delete('/admin/book/{book:id}/delete', [BookController::class, 'delete'])->name('bookDelete');
 
 Route::get('/rule', [RuleController::class, 'index'])->name('rule');
-Route::get('/rule/edit', [RuleController::class, 'edit'])->name('ruleEdit');
+Route::put('/rule', [RuleController::class, 'update'])->name('rule_update');
 // });
 
 // If Login as Student
