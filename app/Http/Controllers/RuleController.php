@@ -7,21 +7,6 @@ use App\Models\Rule;
 
 class RuleController extends Controller
 {
-<<<<<<< HEAD
-    // [VIEW/GET] localhost:8000/admin/rules
-    public function index()
-    {
-        if (auth()->guard('admin')->check()) {
-            return view('Admin.Rule.index');
-        }
-        return view('Home.rule');
-    }
-
-    // [VIEW/GET] localhost:8000/admin/rules/edit
-    public function edit()
-    {
-        return view('Admin.Rule.edit');
-=======
     public function index() {
         $rules = Rule::all();
         return view('Admin.Rule.index', compact('rules'));
@@ -47,6 +32,5 @@ class RuleController extends Controller
             }
         }
         return redirect()->route('rule');
->>>>>>> 87435a77a47a3be4a0ad813693256216127c8300
     }
 }
