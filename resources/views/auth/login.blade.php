@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route('selectRoles') }}" aria-label="{{ __('Login') }}">
+                    <form method="POST" action="{{ route('postLogin') }}" aria-label="{{ __('Login') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="username"

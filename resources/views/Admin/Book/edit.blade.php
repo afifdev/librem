@@ -1,7 +1,7 @@
 @if(session()->has('success'))
 <p> {{ session()->get('success') }}</p>
 @endif
-<form action=" {{ route('bookUpdate', $book->id) }}" method="post" enctype="multipart/form-data">
+<form action=" {{ route('book_update', $book->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('patch')
 

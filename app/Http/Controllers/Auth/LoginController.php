@@ -85,7 +85,7 @@ class LoginController extends Controller
         ]);
         if (Auth::guard('student')->attempt(['nis' => $request->username, 'password' => $request->password], $request->get('remember'))) {
             // dd(auth()->guard('siswa')->check());
-            return redirect()->intended('/student');
+            return redirect()->intended('/');
         }
         return back()->withInput($request->only('username', 'remember'));
     }
@@ -99,7 +99,7 @@ class LoginController extends Controller
         ]);
         if (Auth::guard('teacher')->attempt(['nip' => $request->username, 'password' => $request->password], $request->get('remember'))) {
             // dd(auth()->guard('siswa')->check());
-            return redirect()->intended('/teacher');
+            return redirect()->intended('/');
         }
         return back()->withInput($request->only('username', 'remember'));
     }

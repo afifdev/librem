@@ -49,9 +49,9 @@
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->availability }}</td>
                     <td>{{ $book->isbn }}</td>
-                    <td><a href="{{ route('bookEdit', $book->id) }}">Edit</a></td>
+                    <td><a href="{{ route('book_edit', $book->id) }}">Edit</a></td>
                     <td>
-                        <form action="{{ route('bookDelete', $book->id) }}" method="post">
+                        <form action="{{ route('book_delete', $book->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

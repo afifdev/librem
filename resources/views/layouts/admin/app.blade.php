@@ -16,6 +16,7 @@
     @yield('content')
 
     @yield('script')
+
     <script src="{{ asset('js/bootstrap.js') }}"></script>
 </body>
 

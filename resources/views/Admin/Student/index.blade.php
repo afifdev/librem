@@ -39,9 +39,9 @@
                         {{ $student->grade->level.' '.$student->major->name.' '. $student->major->level }}
                     </td>
                     <td>{{ $student->graduated }}</td>
-                    <td><a href="{{ route('studentEdit', $student->id) }}">Edit</a></td>
+                    <td><a href="{{ route('student_edit', $student->id) }}">Edit</a></td>
                     <td>
-                        <form action="{{ route('studentDelete', $student->id) }}" method="post">
+                        <form action="{{ route('student_delete', $student->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

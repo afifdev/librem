@@ -80,3 +80,14 @@ body {
 footer p {
   color: white;
 }
+
+/* Custom-dropdown */
+.custom-dropdown {
+    font-family: 'Lexend Deca', sans-serif;
+    color: #8b74bd;
+    background-color: #e5e5e5;
+}
+
+.navbar-brand img {
+    width: 40px;
+}

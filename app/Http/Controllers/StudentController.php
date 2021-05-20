@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Grade;
+use App\Models\Kind;
 use App\Models\Major;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -14,8 +15,14 @@ class StudentController extends Controller
     // [VIEW/GET] localhost:8000/admin/student
     public function index()
     {
-        $students = Student::all();
-        return view('Admin.Student.index', compact('students'));
+        if (auth()->guard('admin')->check()) {
+            $students = Student::all();
+            return view('Admin.Student.index', compact('students'));
+        }
+
+        $kinds = Kind::all();
+        $pathImage = '/images/home/';
+        return view('Home.index', compact('kinds', 'pathImage'));
     }
 
     // [VIEW/GET] localhost:8000/admin/student/register
