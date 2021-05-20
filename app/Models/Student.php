@@ -16,4 +16,14 @@ class Student extends Authenticatable
     protected $fillable = [
         'nis', 'password', 'name', 'gender', 'born_date', 'born_place', 'address', 'phone_number', 'start_year', 'grade_id', 'major_id'
     ];
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function major()
+    {
+        return $this->belongsTo(Major::class);
+    }
 }

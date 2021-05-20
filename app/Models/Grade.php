@@ -10,4 +10,9 @@ class Grade extends Model
     public $timestamps = false;
 
     use HasFactory;
+
+    public function student()
+    {
+        return $this->hasMany(Student::class);
+    }
 }
