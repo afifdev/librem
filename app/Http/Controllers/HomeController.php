@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Book, Category, Kind, Transaction, Writer};
+use Illuminate\Support\Facades\DB;
+use App\Models\{Book, Kind};
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $pathImage = 'images/home/';
-        return view('Home.index', compact('pathImage'));
+    public function index() {
+        return view('Home.index');
     }
 
     public function show($kind) {
@@ -19,8 +18,23 @@ class HomeController extends Controller
             abort(404);
         }
         $kind_id = $get_kind_id[0]->id;
-        $books = Book::where('kind_id', $kind_id)->get();
         $categories = Kind::find($kind_id)->categories;
+        $books;
+        if ($kind === 'courses') {
+            $books = DB::table('kinds')->where('kinds.name','=',$kind)
+            ->join('categories','categories.kind_id','=','kinds.id')
+            ->join('books','books.category_id','=','categories.id')
+            ->join('writers','writers.id','=','books.writer_id')
+            ->join('grades','grades.id','=','books.grade_id')
+            ->select('books.code as code','books.title as title','books.availability as availability', 'grades.level as grade','categories.name as category','writers.name as writer','books.isbn as isbn')->get();
+        } else {
+            $books = DB::table('kinds')->where('kinds.name',$kind)
+            ->join('categories','categories.kind_id','=','kinds.id')
+            ->join('books','books.category_id','=','categories.id')
+            ->join('writers','writers.id','=','books.writer_id')
+            ->select('books.code as code','books.title as title','books.availability as availability','categories.name as category','writers.name as writer','books.isbn as isbn')->get();
+        }
+        // $books = Book::where('kind_id', $kind_id)->get();
         return view('Home.show', compact('books', 'kind', 'categories'));
     }
     
@@ -31,54 +45,49 @@ class HomeController extends Controller
             abort(404);
         }
         $kind_id = $get_kind_id[0]->id;
-        $queryArray = array(['kind_id','=',$kind_id]);
+        $form = request();
+        $query = array();
         $books;
-        $writers;
-
-        // Filter
-        if (request()->search) {
-            $search = request()->search;
-            if (request()->search_by === 'writer') {
-                $writers = Writer::where([['name', 'LIKE', "%{$search}%"]])->get();
+        if ($form->search && in_array($form->search_by, array('code','title','writer','isbn'))) {
+            if ($form->search_by === 'writer') {
+                array_push($query, array('writers.name','LIKE','%'.$form->search.'%'));
             } else {
-                array_push($queryArray, array(request()->search_by,'LIKE',"%{$search}%"));
+                array_push($query, array('books.'.$form->search_by,'LIKE','%'.$form->search.'%'));
             }
         }
-        if (in_array(request()->availability, array('tersedia', 'terpinjam'))) {
-            $availID;
-            if (request()->availability === 'tersedia') {
-                $availID = 1;
+        if ($form->availability && in_array($form->availability, array('terpinjam','tersedia'))) {
+            if ($form->availability === 'terpinjam') {
+                $form->availability = 0;
             } else {
-                $availID = 0;
+                $form->availability = 1;
             }
-            array_push($queryArray, array('availability','=',$availID));
+            array_push($query, array('books.availability','=',$form->availability));
         }
-        if ($kind === 'pelajaran' && request()->grade !== 'all') {
-            array_push($queryArray, array('grade_id','=',intval(request()->grade)-9));
+        if ($kind === 'courses' && in_array($form->grade, array(10,11,12))) {
+            array_push($query, array('grades.level','=',$form->grade));
         }
-        if ($kind === 'pelajaran' && request()->course !== 'all') {
-            $category = Category::where('name',request()->course)->get()[0]->id;
-            array_push($queryArray, array('category_id','=',$category));
+        if ($form->course && $form->course !== 'all') {
+            array_push($query, array('categories.name','LIKE','%'.$form->course.'%'));
         }
-        if (request()->search_by === 'writer' && count($writers) > 1) {
-            $writers_id = array();
-            foreach($writers as $writer) {
-                array_push($writers_id, $writer->id);
-            }
-            $books = Book::where($queryArray)->whereIn('writer_id', $writers_id)->get();
-        } else if (request()->search_by === 'writer') {
-            array_push($queryArray, array('writer_id','=',$writers[0]->id));
-            $books = Book::where($queryArray)->get();
+        if ($kind === 'courses') {
+            $books = DB::table('kinds')->where('kinds.name',$kind)
+            ->join('categories','categories.kind_id','=','kinds.id')
+            ->join('books','books.category_id','=','categories.id')
+            ->join('grades','grades.id','=','books.grade_id')
+            ->join('writers','writers.id','=','books.writer_id')
+            ->select('books.code as code','books.title as title','books.availability as availability', 'grades.level as grade','categories.name as category','writers.name as writer','books.isbn as isbn')->where($query)->get();
         } else {
-            $books = Book::where($queryArray)->get();
+            $books = DB::table('kinds')
+            ->join('categories','categories.kind_id','=','kinds.id')
+            ->join('books','books.category_id','=','categories.id')
+            ->join('writers','writers.id','=','books.writer_id')
+            ->select('books.code as code','books.title as title','books.availability as availability','categories.name as category','writers.name as writer','books.isbn as isbn')->where($query)->get();
         }
         $categories = Kind::find($kind_id)->categories;
         return view('Home.show',compact('books', 'kind', 'categories'));
     }
 
-    // localhost:8000/about
-    public function about()
-    {
+    public function about() {
         return view('Home.about');
     }
 }
