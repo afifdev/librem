@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->string('born_place');
             $table->string('address');
             $table->string('phone_number');
-            $table->date('start_year');
+            $table->string('start_year');
             $table->foreignId('grade_id');
             $table->integer('major_id');
             $table->boolean('graduated')->default(0);

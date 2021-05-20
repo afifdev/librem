@@ -26,14 +26,14 @@ class HomeController extends Controller
         $categories = Kind::find($kind_id)->categories;
         $books;
         if ($kind === 'courses') {
-            $books = DB::table('kinds')->where('kinds.name', '=', $kind)
+            $books = DB::table('kinds')->where('kinds.name',$kind)
                 ->join('categories', 'categories.kind_id', '=', 'kinds.id')
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
                 ->join('grades', 'grades.id', '=', 'books.grade_id')
                 ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'grades.level as grade', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->get();
         } else {
-            $books = DB::table('kinds')->where('kinds.name', $kind)
+            $books = DB::table('kinds')->where('kinds.name',$kind)
                 ->join('categories', 'categories.kind_id', '=', 'kinds.id')
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
