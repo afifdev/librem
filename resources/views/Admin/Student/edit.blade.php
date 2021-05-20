@@ -115,5 +115,5 @@
     @endif
     <br>
 
-    <button type="submit">Tambah</button>
+    <button type="submit">Edit</button>
 </form>

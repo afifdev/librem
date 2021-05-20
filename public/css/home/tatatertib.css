@@ -3,7 +3,7 @@
 
 /* Body */
 body {
-  background-color: #e5e5e5;
+  background-color: white;
   font-family: 'Lexend Deca', sans-serif;
   color: #7953a9;
 }
@@ -20,11 +20,22 @@ body {
   color: #8b74bd;
 }
 
-.custom-nav .nav-item .nav-link .active {
+.custom-nav .nav-item .nav-link a:active {
   color: #663399;
 }
 
-/* Button CTA */
+/* Custom-dropdown */
+.custom-dropdown {
+  font-family: 'Lexend Deca', sans-serif;
+  color: #8b74bd;
+  background-color: #e5e5e5;
+}
+
+.navbar-brand img {
+  width: 40px;
+}
+
+/* tombol cta */
 .cta {
   font-family: 'Lexend Deca', sans-serif;
   display: inline-block;
@@ -45,29 +56,30 @@ body {
   background: rgba(139, 116, 189, 0.66);
 }
 
-/* Selamat Datang */
-.hero {
-  margin-top: 104px;
-  padding: 50px;
+/* Konten */
+.konten {
+  margin-top: 100px;
 }
 
-.hero img {
-  width: 70%;
-  margin-top: 87px;
-  margin-bottom: 90px;
+/* background  (custom box) */
+.custom-box {
+  background: rgba(139, 116, 189, 0.66);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 50px;
 }
 
-/* Kategori */
-.kategori a {
-  text-decoration: none;
-  color: #7953a9;
-}
-.kategori img {
-  width: 206px;
+.custom-box h5,
+.custom-box h2 {
+  color: white;
+  text-align: center;
 }
 
-.judul {
-  margin-bottom: 30px;
+.custom-box ul li,
+.custom-box ol li,
+.custom-box p,
+.custom-box h3 {
+  color: white;
 }
 
 /* Footer */

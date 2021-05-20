@@ -28,7 +28,7 @@ Route::get('/admin/student', [StudentController::class, 'index'])->name('student
 Route::get('/admin/student/register', [StudentController::class, 'register'])->name('studentRegister');
 Route::get('/admin/student/{student:id}', [StudentController::class, 'detail'])->name('studentDetail');
 Route::get('/admin/student/{student:id}/edit', [StudentController::class, 'edit'])->name('studentEdit');
-Route::post('/admin/student/store', [StudentController::class, 'store'])->name('studentStore');
+Route::post('/admin/student/store', [StudentController::class, 'store'])->name('studen tStore');
 Route::patch('/admin/student/{student:id}/update', [StudentController::class, 'update'])->name('studentUpdate');
 Route::delete('/admin/student/{student:id}/delete', [StudentController::class, 'delete'])->name('studentDelete');
 
