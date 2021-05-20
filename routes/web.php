@@ -52,9 +52,16 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::patch('/admin/book/{book:id}/update', [BookController::class, 'update'])->name('book_update');
     Route::delete('/admin/book/{book:id}/delete', [BookController::class, 'delete'])->name('book_delete');
 
+<<<<<<< HEAD
     Route::get('/admin/rule', [RuleController::class, 'index'])->name('rule_admin');
     Route::put('/admin/rule', [RuleController::class, 'update'])->name('rule_update');
 });
+=======
+Route::get('/rule', [RuleController::class, 'index'])->name('rule');
+Route::post('/rule', [RuleController::class, 'create'])->name('rule_register');
+Route::put('/rule/{id}', [RuleController::class, 'updateAndDelete'])->name('rule_update');
+// });
+>>>>>>> 87435a77a47a3be4a0ad813693256216127c8300
 
 // If Login as Student
 Route::group(['middleware' => 'auth:student'], function () {
