@@ -16,10 +16,6 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('book_code');
-<<<<<<< HEAD
-            // $table->foreignId('book_code');
-=======
->>>>>>> d84a6ed83ba27a12df18eb2788f9836393072dde
             $table->foreignId('student_nis');
             $table->foreignId('teacher_nip');
             $table->string('status');
