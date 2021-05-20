@@ -6,6 +6,7 @@ body {
   background-color: #e5e5e5;
   font-family: 'Lexend Deca', sans-serif;
   color: #7953a9;
+  min-height: 100vh;
 }
 
 /* Navbar */

@@ -17,51 +17,45 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // If Login as Admin
-Route::group(['middleware' => 'auth:admin'], function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+// Route::group(['middleware' => 'auth:admin'], function () {
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
-    Route::get('/admin/transaction', [TransactionController::class, 'index'])->name('transaction');
-    Route::post('/admin/transaction', [TransactionController::class, 'search'])->name('trans_search');
-    Route::get('/admin/transaction/register', [TransactionController::class, 'register'])->name('trans_register');
-    Route::post('/admin/transaction/register', [TransactionController::class, 'create'])->name('trans_create');
-    Route::get('/admin/transaction/{id}', [TransactionController::class, 'show'])->name('trans_show');
-    Route::put('/admin/transaction/{id}', [TransactionController::class, 'update'])->name('trans_update');
-    Route::delete('/admin/transaction/{id}', [TransactionController::class, 'delete'])->name('trans_delete');
+Route::get('/admin/transaction', [TransactionController::class, 'index'])->name('transaction');
+Route::post('/admin/transaction', [TransactionController::class, 'search'])->name('trans_search');
+Route::get('/admin/transaction/register', [TransactionController::class, 'register'])->name('trans_register');
+Route::post('/admin/transaction/register', [TransactionController::class, 'create'])->name('trans_create');
+Route::get('/admin/transaction/{id}', [TransactionController::class, 'show'])->name('trans_show');
+Route::put('/admin/transaction/{id}', [TransactionController::class, 'update'])->name('trans_update');
+Route::delete('/admin/transaction/{id}', [TransactionController::class, 'delete'])->name('trans_delete');
 
-    Route::get('/admin/student', [StudentController::class, 'index'])->name('student_admin');
-    Route::get('/admin/student/register', [StudentController::class, 'register'])->name('student_register');
-    Route::get('/admin/student/{student:id}', [StudentController::class, 'detail'])->name('student_detail');
-    Route::get('/admin/student/{student:id}/edit', [StudentController::class, 'edit'])->name('student_edit');
-    Route::post('/admin/student/store', [StudentController::class, 'store'])->name('student_store');
-    Route::patch('/admin/student/{student:id}/update', [StudentController::class, 'update'])->name('student_update');
-    Route::delete('/admin/student/{student:id}/delete', [StudentController::class, 'delete'])->name('student_delete');
+Route::get('/admin/student', [StudentController::class, 'index'])->name('student_admin');
+Route::get('/admin/student/register', [StudentController::class, 'register'])->name('student_register');
+Route::get('/admin/student/{student:id}', [StudentController::class, 'detail'])->name('student_detail');
+Route::get('/admin/student/{student:id}/edit', [StudentController::class, 'edit'])->name('student_edit');
+Route::post('/admin/student/store', [StudentController::class, 'store'])->name('student_store');
+Route::patch('/admin/student/{student:id}/update', [StudentController::class, 'update'])->name('student_update');
+Route::delete('/admin/student/{student:id}/delete', [StudentController::class, 'delete'])->name('student_delete');
 
-    Route::get('/admin/teacher', [TeacherController::class, 'index'])->name('teacher_admin');
-    Route::get('/admin/teacher/register', [TeacherController::class, 'register'])->name('teacher_register');
-    Route::get('/admin/teacher/{teacher:id}', [TeacherController::class, 'detail'])->name('teacher_detail');
-    Route::get('/admin/teacher/{teacher:id}/edit', [TeacherController::class, 'edit'])->name('teacher_edit');
-    Route::post('/admin/teacher/store', [TeacherController::class, 'store'])->name('teacher_store');
-    Route::patch('/admin/teacher/{teacher:id}/update', [TeacherController::class, 'update'])->name('teacher_update');
-    Route::delete('/admin/teacher/{teacher:id}/delete', [TeacherController::class, 'delete'])->name('teacher_delete');
+Route::get('/admin/teacher', [TeacherController::class, 'index'])->name('teacher_admin');
+Route::get('/admin/teacher/register', [TeacherController::class, 'register'])->name('teacher_register');
+Route::get('/admin/teacher/{teacher:id}', [TeacherController::class, 'detail'])->name('teacher_detail');
+Route::get('/admin/teacher/{teacher:id}/edit', [TeacherController::class, 'edit'])->name('teacher_edit');
+Route::post('/admin/teacher/store', [TeacherController::class, 'store'])->name('teacher_store');
+Route::patch('/admin/teacher/{teacher:id}/update', [TeacherController::class, 'update'])->name('teacher_update');
+Route::delete('/admin/teacher/{teacher:id}/delete', [TeacherController::class, 'delete'])->name('teacher_delete');
 
-    Route::get('/admin/book', [BookController::class, 'index'])->name('book');
-    Route::get('/admin/book/register', [BookController::class, 'register'])->name('book_register');
-    Route::get('/admin/book/{book:id}', [BookController::class, 'detail'])->name('book_detail');
-    Route::get('/admin/book/{book:id}/edit', [BookController::class, 'edit'])->name('book_edit');
-    Route::post('/admin/book/store', [BookController::class, 'store'])->name('book_store');
-    Route::patch('/admin/book/{book:id}/update', [BookController::class, 'update'])->name('book_update');
-    Route::delete('/admin/book/{book:id}/delete', [BookController::class, 'delete'])->name('book_delete');
+Route::get('/admin/book', [BookController::class, 'index'])->name('book');
+Route::get('/admin/book/register', [BookController::class, 'register'])->name('book_register');
+Route::get('/admin/book/{book:id}', [BookController::class, 'detail'])->name('book_detail');
+Route::get('/admin/book/{book:id}/edit', [BookController::class, 'edit'])->name('book_edit');
+Route::post('/admin/book/store', [BookController::class, 'store'])->name('book_store');
+Route::patch('/admin/book/{book:id}/update', [BookController::class, 'update'])->name('book_update');
+Route::delete('/admin/book/{book:id}/delete', [BookController::class, 'delete'])->name('book_delete');
 
-<<<<<<< HEAD
-    Route::get('/admin/rule', [RuleController::class, 'index'])->name('rule_admin');
-    Route::put('/admin/rule', [RuleController::class, 'update'])->name('rule_update');
-});
-=======
 Route::get('/rule', [RuleController::class, 'index'])->name('rule');
 Route::post('/rule', [RuleController::class, 'create'])->name('rule_register');
 Route::put('/rule/{id}', [RuleController::class, 'updateAndDelete'])->name('rule_update');
 // });
->>>>>>> 87435a77a47a3be4a0ad813693256216127c8300
 
 // If Login as Student
 Route::group(['middleware' => 'auth:student'], function () {

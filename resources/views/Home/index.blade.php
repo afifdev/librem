@@ -41,7 +41,6 @@
         </div>
         @endforelse
 
-
     </div>
 </div>
 <!-- Akhir Kategori -->
