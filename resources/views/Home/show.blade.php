@@ -23,7 +23,7 @@
             <option value="terpinjam">terpinjam</option>
             <option value="tersedia">tersedia</option>
         </select>
-        @if($kind === 'pelajaran')
+        @if($kind === 'courses')
             <select name="grade">
                 <option value="all">all</option>
                 <option value="10">10</option>
@@ -45,7 +45,7 @@
             <th>Code</th>
             <th>Title</th>
             <th>Avilability</th>
-            @if($kind === 'pelajaran')
+            @if($kind === 'courses')
                 <th>Class</th>
             @endif
             <th>Category</th>
@@ -58,11 +58,11 @@
                 <td>{{$book->code}}</td>
                 <td>{{$book->title}}</td>
                 <td>{{$book->availability === 1? 'tersedia' : 'terpinjam'}}</td>
-                @if($kind === 'pelajaran')
-                <td>{{$book->grade->level}}</td>
+                @if($kind === 'courses')
+                <td>{{$book->grade}}</td>
                 @endif
-                <td>{{$book->category->name}}</td>
-                <td>{{$book->writer->name}}</td>
+                <td>{{$book->category}}</td>
+                <td>{{$book->writer}}</td>
                 <td>{{$book->isbn}}</td>
             </tr>    
         @endforeach
