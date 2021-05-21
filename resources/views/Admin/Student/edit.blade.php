@@ -1,4 +1,4 @@
-<form action=" {{ route('studentUpdate', $student->id) }}" method="post" enctype="multipart/form-data">
+<form action=" {{ route('student_update', $student->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('patch')
 

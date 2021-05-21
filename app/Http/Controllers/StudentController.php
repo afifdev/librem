@@ -16,7 +16,8 @@ class StudentController extends Controller
     public function index()
     {
         if (auth()->guard('admin')->check()) {
-            $students = Student::all();
+            $students = Student::cursorPaginate(3);
+
             return view('Admin.Student.index', compact('students'));
         }
 
@@ -59,7 +60,7 @@ class StudentController extends Controller
     {
         $attr = $request->all();
         Student::create($attr);
-        return redirect()->route('studentRegister')
+        return redirect()->route('student')
             ->with('success', 'Student Berhasil Ditambahkan');
     }
 
@@ -77,6 +78,6 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect()->route('student')
-            ->with('success', 'Student Berhasil Dihapuss');
+            ->with('success', 'Student Berhasil Dihapus');
     }
 }

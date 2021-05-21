@@ -28,7 +28,7 @@ Route::get('/admin/transaction/{id}', [TransactionController::class, 'show'])->n
 Route::put('/admin/transaction/{id}', [TransactionController::class, 'update'])->name('trans_update');
 Route::delete('/admin/transaction/{id}', [TransactionController::class, 'delete'])->name('trans_delete');
 
-Route::get('/admin/student', [StudentController::class, 'index'])->name('student_admin');
+Route::get('/admin/student', [StudentController::class, 'index'])->name('student');
 Route::get('/admin/student/register', [StudentController::class, 'register'])->name('student_register');
 Route::get('/admin/student/{student:id}', [StudentController::class, 'detail'])->name('student_detail');
 Route::get('/admin/student/{student:id}/edit', [StudentController::class, 'edit'])->name('student_edit');
@@ -36,7 +36,7 @@ Route::post('/admin/student/store', [StudentController::class, 'store'])->name('
 Route::patch('/admin/student/{student:id}/update', [StudentController::class, 'update'])->name('student_update');
 Route::delete('/admin/student/{student:id}/delete', [StudentController::class, 'delete'])->name('student_delete');
 
-Route::get('/admin/teacher', [TeacherController::class, 'index'])->name('teacher_admin');
+Route::get('/admin/teacher', [TeacherController::class, 'index'])->name('teacher');
 Route::get('/admin/teacher/register', [TeacherController::class, 'register'])->name('teacher_register');
 Route::get('/admin/teacher/{teacher:id}', [TeacherController::class, 'detail'])->name('teacher_detail');
 Route::get('/admin/teacher/{teacher:id}/edit', [TeacherController::class, 'edit'])->name('teacher_edit');

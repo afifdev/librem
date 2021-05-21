@@ -1,4 +1,4 @@
-<form action=" {{ route('studentStore') }}" method="post">
+<form action=" {{ route('student_store') }}" method="post">
     @csrf
     @method('post')
 
