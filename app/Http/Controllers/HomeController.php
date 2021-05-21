@@ -32,13 +32,13 @@ class HomeController extends Controller
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
                 ->join('grades', 'grades.id', '=', 'books.grade_id')
-                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'grades.level as grade', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->simplePaginate(1);
+                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'grades.level as grade', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->simplePaginate(20);
         } else {
             $books = DB::table('kinds')->where('kinds.name',$kind)
                 ->join('categories', 'categories.kind_id', '=', 'kinds.id')
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
-                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->simplePaginate(1);
+                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->simplePaginate(20);
         }
         return view('show', compact('books', 'kind', 'categories'));
     }
@@ -75,19 +75,20 @@ class HomeController extends Controller
         if ($form->course && $form->course !== 'all') {
             array_push($query, array('categories.name', 'LIKE', '%' . $form->course . '%'));
         }
+        dd($query);
         if ($kind === 'courses') {
             $books = DB::table('kinds')->where('kinds.name', $kind)
                 ->join('categories', 'categories.kind_id', '=', 'kinds.id')
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('grades', 'grades.id', '=', 'books.grade_id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
-                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'grades.level as grade', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->where($query)->get();
+                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'grades.level as grade', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->where($query)->simplePaginate(20);
         } else {
             $books = DB::table('kinds')->where('kinds.name', $kind)
                 ->join('categories', 'categories.kind_id', '=', 'kinds.id')
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
-                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->where($query)->get();
+                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->where($query)->simplePaginate(20);
         }
         $categories = Kind::find($kind_id)->categories;
         return view('show', compact('books', 'kind', 'categories'));

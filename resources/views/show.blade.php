@@ -36,7 +36,7 @@
         <form action="{{route('search_books', ['kind' => $kind])}}" method="POST">
             @csrf
             <div class="form-outline">
-                <input type="search" id="form1" class="form-control" placeholder="Search for anything...."
+                <input type="search" name="search" id="form1" class="form-control" placeholder="Search for anything...."
                     aria-label="Search" />
             </div>
             <select name="search_by" class="form-select">
@@ -49,8 +49,8 @@
             <h3>Filter</h3>
             <select name="availability" class="form-select">
                 <option value="all">Status buku . . .</option>
-                <option value="1">tersedia</option>
-                <option value="0">terpinjam</option>
+                <option value="tersedia">tersedia</option>
+                <option value="terpinjam">terpinjam</option>
             </select>
             <br>
             @if ($kind === 'courses')
@@ -58,16 +58,16 @@
                 <div class="dropdown-select">
                     <i class="fa fa-angle-down icon"></i>
                 </div>
-                <div name="course" class="dropdown-list">
+                <div name="grade" class="dropdown-list">
                     <option value="all">Kelas</option>
-                    <option value="1">X</option>
-                    <option value="2">XI</option>
-                    <option value="3">XII</option>
+                    <option value="10">X</option>
+                    <option value="11">XI</option>
+                    <option value="12">XII</option>
                 </div>
             </select>
             &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
             @endif
-            <select class="dropdown">
+            <select class="dropdown" name="course">
                 <div class="dropdown-select">
                     <i class="fa fa-angle-down icon"></i>
                 </div>
