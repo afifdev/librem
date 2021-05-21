@@ -15,6 +15,18 @@
         @if(session()->has('success'))
         <p> {{ session()->get('success') }}</p>
         @endif
+        <form action="{{route('search_books_admin') }}" method="POST">
+            @csrf
+            <!-- searching -->
+            <div class="form-outline">
+                <input name="search" type="search" id="form1" class="form-control"
+                    placeholder="Search for Book Title..." aria-label="Search" />
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+            <br><br>
+        </form>
+
+
         <table class="table">
             <thead>
                 <tr>

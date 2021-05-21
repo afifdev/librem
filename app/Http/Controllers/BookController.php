@@ -140,4 +140,15 @@ class BookController extends Controller
         session()->flash('success', 'Buku berhasil dihapus');
         return redirect(route('book'));
     }
+
+    public function handleSearch()
+    {
+        $form = request();
+        if (isset($form->search)) {
+            $books = Book::where('title', 'like', '%' . $form->search . '%')->get();
+        } else {
+            $books = Book::all();
+        }
+        return view('auth.admin.book.index', compact('books'));
+    }
 }
