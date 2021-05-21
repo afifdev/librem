@@ -16,7 +16,7 @@ class TransactionController extends Controller
                             ->join('teachers','transactions.teacher_nip','=','teachers.nip')
                             ->select('transactions.*','books.title','students.name as student_name','teachers.name as teacher_name')
                             ->get();
-        return view('Admin.Transaction.index', compact('transactions'));
+        return view('auth.admin.transaction.index', compact('transactions'));
     }
                         
     public function search() {
@@ -47,10 +47,10 @@ class TransactionController extends Controller
                             ->select('transactions.*','books.title','students.name as student_name','teachers.name as teacher_name')
                             ->where($query)
                             ->get();
-        return view('Admin.Transaction.index', compact('transactions'));
+        return view('auth.admin.transaction.index', compact('transactions'));
     }
     public function register() {
-        return view('Admin.Transaction.register');
+        return view('auth.admin.transaction.register');
     }
 
     public function show($id) {
@@ -58,24 +58,30 @@ class TransactionController extends Controller
         if (!$transaction) {
             abort(404);
         }
-        return view('Admin.Transaction.show', compact('transaction'));
+        return view('auth.admin.transaction.show', compact('transaction'));
     }
 
     public function create(StoreTransactionRequest $request) {
+        $admin = auth()->guard('admin')->check();
+        if (!$admin) {
+            abort(403);
+        }
         $form = $request;
         $book = Book::where('code', $form->book_code)->get();
-        $student = Student::where('nis', $form->student_nis)->get();
-        $teacher = Teacher::where('nip', $form->teacher_nip)->get();
+        $user;
+        if ($form->user === 'student') {
+            $user = Student::where('nis', $form->user_number)->get();
+        } else if ($form->user === 'teacher') {
+            $user = Teacher::where('nip', $form->user_number)->get();
+        } else {
+            abort(404);
+        }
         if (count($book) === 0) {
             session()->flash('error', 'Book not found');
             return redirect()->back();
         }
-        if (count($student) === 0) {
+        if (count($user) === 0) {
             session()->flash('error', 'Student not found');
-            return redirect()->back();
-        }
-        if (count($teacher) === 0) {
-            session()->flash('error', 'Teacher not found');
             return redirect()->back();
         }
         $transaction = new Transaction;

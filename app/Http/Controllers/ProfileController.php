@@ -28,6 +28,7 @@ class ProfileController extends Controller
                         ->get();
             return view('Profile.index', compact('user'));
         }
-        abort(403);
+        return view('auth.profile', ['user' => '']);
+        // abort(403);
     }
 }

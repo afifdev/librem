@@ -10,7 +10,7 @@ class RuleController extends Controller
     public function index()
     {
         $rules = Rule::all();
-        return view('Admin.Rule.index', compact('rules'));
+        return view('auth.admin.rule.index', compact('rules'));
     }
 
     public function create()

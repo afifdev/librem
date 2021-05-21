@@ -1,0 +1,55 @@
+.route-auth-admin-navigation header {
+    background-color: #8052ad;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.route-auth-admin-navigation header nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.route-auth-admin-navigation .librem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.route-auth-admin-navigation .librem h2 {
+    color: white;
+    padding: 4px 0 4px 40px;
+    font-size: 35px;
+}
+
+.route-auth-admin-navigation .profile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.route-auth-admin-navigation .profile .avatar {
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+    margin-right: 13px;
+}
+
+.route-auth-admin-navigation .profile .avatar img {
+    width: 100%;
+}
+
+.route-auth-admin-navigation .profile .halo {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    font-size: 13px;
+}
+
+.route-auth-admin-navigation .profile .halo p {
+    width: 100%;
+    color: white;
+    margin-top: 10px;
+    /* padding-left: 20px; */
+}

@@ -15,20 +15,20 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::all();
-        return view('Admin.Teacher.index', compact('teachers'));
+        return view('auth.admin.teacher.index', compact('teachers'));
     }
 
     // [VIEW/GET] localhost:8000/admin/teacher/register
     public function register()
     {
 
-        return view('Admin.Teacher.register');
+        return view('auth.admin.teacher.register');
     }
 
     // [VIEW/GET] localhost:8000/admin/teacher/:id
     public function detail()
     {
-        return view('Admin.Teacher.detail');
+        return view('auth.admin.teacher.detail');
     }
 
     // [VIEW/GET] localhost:8000/admin/teacher/:id/edit
@@ -42,7 +42,7 @@ class TeacherController extends Controller
 
         $teacher = Teacher::where('id', $id)->get();
         $teacher = $teacher[0];
-        return view('Admin.Teacher.edit', compact('teacher'));
+        return view('auth.admin.teacher.edit', compact('teacher'));
     }
 
     public function store(StoreTeacherRequest $request, Teacher $teacher)

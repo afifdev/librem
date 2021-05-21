@@ -1,0 +1,304 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Quicksand", sans-serif;
+}
+.route-auth-index .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.route-auth-index .sidebar {
+    -ms-flex-preferred-size: 23%;
+    flex-basis: 23%;
+    background-color: #c7bddb;
+    height: 89.7vh;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+.route-auth-index .link-sidebar {
+    width: 80%;
+    margin: auto;
+}
+
+.route-auth-index .link-sidebar ul li {
+    list-style-type: none;
+    margin: 60px 0 0 0;
+}
+
+.route-auth-index .link-sidebar ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #8b74bd;
+}
+
+.route-auth-index .link-sidebar ul li span {
+    padding-right: 10px;
+}
+
+.route-auth-index .link-sidebar ul li a:hover {
+    color: #663399;
+}
+
+.route-auth-index .content {
+    width: 77%;
+}
+
+.route-auth-index .ad-mem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.route-auth-index .member-admin {
+    margin: 20px 0 0 40px;
+    background-color: #e5e5e5;
+    padding: 18px;
+    width: 30vh;
+    height: 10%;
+    border-radius: 10px;
+}
+
+.route-auth-index .member-admin a {
+    text-decoration: none;
+    color: #b4a8a8;
+}
+
+.route-auth-index .member-admin a:last-child {
+    margin-left: 10px;
+}
+
+.route-auth-index .member-admin a:hover {
+    border-bottom: 2px solid black;
+}
+
+.route-auth-index .total-member {
+    text-align: right;
+    margin-top: 12px;
+    padding: 18px;
+    font-weight: bold;
+}
+
+.route-auth-index .mem-new,
+.route-auth-index .book-det,
+.route-auth-index .trans-det {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.route-auth-index .mem-new p,
+.route-auth-index .book-det p,
+.route-auth-index .trans-det p {
+    margin: 20px 0 0 40px;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.route-auth-index .mem-new p i,
+.route-auth-index .book-det p i,
+.route-auth-index .trans-det p i {
+    margin-right: 10px;
+}
+
+.route-auth-index .search,
+.route-auth-index .search-trans {
+    -ms-flex-preferred-size: 30%;
+    flex-basis: 30%;
+    padding: 18px 0 0 50px;
+}
+
+.route-auth-index .search input,
+.route-auth-index .search-trans input,
+.route-auth-index .trans-det .form-drop,
+.route-auth-index .sort select {
+    border: none;
+    outline: none;
+    background-color: #c7bddb;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.route-auth-index .search .btn-search,
+.route-auth-index .search-trans .btn-search,
+.route-auth-index .sort .btn-search {
+    border: none;
+    padding: 7px;
+    background-color: #8b74bd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.route-auth-index .book-det .search {
+    padding: 25px 0 0 50px;
+}
+
+.route-auth-index .trans-det .search-trans {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+}
+
+.route-auth-index .book-det p,
+.route-auth-index .trans-det p {
+    -ms-flex-preferred-size: 60%;
+    flex-basis: 60%;
+    margin-top: 30px;
+}
+
+.route-auth-index .sort select {
+    margin: 20px 0 0 60px;
+    text-align: right;
+    padding: 7px;
+}
+
+.route-auth-index .tabel-mem {
+    margin: 30px 20px 0 30px;
+    border-collapse: collapse;
+}
+
+.route-auth-index .styled-table2 {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    width: 100%;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.route-auth-index .styled-table2 thead tr {
+    background-color: #8052ad;
+    color: #ffffff;
+    /* text-align: left; */
+}
+
+.route-auth-index .styled-table2 th,
+.route-auth-index .styled-table2 td {
+    padding: 12px 5px 15px 15px;
+    text-align: center;
+    font-size: 11.4px;
+}
+
+.route-auth-index .styled-table2 thead tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.route-auth-index .styled-table2 thead tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.route-auth-index .styled-table2 tbody tr:last-of-type {
+    border-bottom: 2px solid #8052ad;
+}
+
+.route-auth-index .styled-table2 tbody .edit,
+.route-auth-index .styled-table2 tbody .del {
+    background-color: #11853d;
+    padding: 0.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    color: #fff;
+    margin-right: 0.3rem;
+}
+
+.route-auth-index .styled-table2 tbody .col {
+    width: 15%;
+}
+
+.route-auth-index .foot {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.route-auth-index .foot .button {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+}
+
+.route-auth-index .button a,
+.route-auth-index .button button {
+    text-decoration: none;
+    border: none;
+    font-size: 15px;
+    color: #fff;
+    padding: 6px;
+    border-radius: 2px;
+}
+
+.route-auth-index .button a {
+    background-color: #8b74bd;
+}
+
+.route-auth-index .page {
+    margin-right: 50px;
+}
+
+.route-auth-index .page-link {
+    text-decoration: none;
+    padding: 2px 3px 2px 3px;
+    color: #fff;
+    background-color: #8052ad;
+    font-size: 13px;
+}
+
+@media screen and (max-width: 1024px) {
+    .route-auth-index .link-sidebar ul li a {
+        font-size: 15px;
+    }
+    .route-auth-index .trans-det .search-trans {
+        -ms-flex-preferred-size: 80%;
+        flex-basis: 80%;
+    }
+    .route-auth-index .search-trans input {
+        width: 100px;
+    }
+    .route-auth-index .styled-table2 th,
+    .route-auth-index .styled-table2 td {
+        padding: 8px 3px 8px 8px;
+        font-size: 8px;
+    }
+    .route-auth-index .search {
+        -ms-flex-preferred-size: 40%;
+        flex-basis: 40%;
+    }
+    .route-auth-index .member-admin {
+        width: 23vh;
+    }
+    .route-auth-index .button a,
+    .route-auth-index .button button {
+        font-size: 10px;
+    }
+}
+
+.route-auth-index .styled-table2 tbody form .del {
+    background-color: #f34336;
+    border: none;
+    z-index: 1;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.route-auth-index .message {
+    background-color: #cfdfd5;
+    margin: 20px 40px 0 40px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.route-auth-index .message p {
+    color: #11853d;
+}

@@ -20,7 +20,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view('Admin.Book.index', compact('books'));
+        return view('auth.admin.book.index', compact('books'));
     }
 
     // [VIEW/GET] localhost:8000/admin/books/register
@@ -34,13 +34,13 @@ class BookController extends Controller
         $grades = Grade::all();
 
 
-        return view('Admin.Book.register', compact('books', 'kinds', 'categories', 'writers', 'publishers', 'grades'));
+        return view('auth.admin.book.register', compact('books', 'kinds', 'categories', 'writers', 'publishers', 'grades'));
     }
 
     // [VIEW/GET] localhost:8000/admin/books/:id
     public function detail()
     {
-        return view('Admin.Book.detail');
+        return view('auth.admin.book.detail');
     }
 
     // [VIEW/GET] localhost:8000/admin/books/:id/edit
@@ -59,7 +59,7 @@ class BookController extends Controller
         $grades = Grade::all();
         $book = Book::where('id', $id)->get();
         $book = $book[0];
-        return view('Admin.Book.edit', compact('book', 'kinds', 'categories', 'writers', 'publishers', 'grades'));
+        return view('auth.admin.book.edit', compact('book', 'kinds', 'categories', 'writers', 'publishers', 'grades'));
     }
 
     public function store(StoreBookRequest $request)

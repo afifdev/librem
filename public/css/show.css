@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-color: unset;
+    color: unset;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Lexend Deca", sans-serif;
+    width: 100%;
+    height: 100%;
+}
+.route-home-navigation .custom-nav {
+    background-color: white;
+}
+.route-home-show li {
+    margin: 25px 25px;
+}
+
+.route-home-show .container-xl {
+    padding-top: 6rem;
+}
+
+.route-home-show .container-xl p {
+    font-size: 18px;
+}
+
+.route-home-show .form-control {
+    background-color: #e5e5e5;
+}
+
+.route-home-show .terpinjam {
+    background-color: #e5e5e5;
+    display: block;
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+
+.route-home-show select.dropdown {
+    position: relative;
+    background-color: #e5e5e5;
+    width: 250px;
+    border: none;
+    border-radius: 5px;
+}
+
+.route-home-show .pagination {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.route-home-show .pagination li {
+    background-color: #620091;
+    border-radius: 80px;
+}
+
+@media (max-width: 700px) {
+    .route-home-show select.dropdown {
+        position: relative;
+        width: 150px;
+    }
+}
+
+@media (max-width: 400px) {
+    .route-home-show select.dropdown {
+        position: relative;
+        width: 100px;
+    }
+}
+
+@media (max-width: 300px) {
+    .route-home-show select.dropdown {
+        position: relative;
+        width: 80px;
+    }
+}
+
+@media (max-width: 250px) {
+    .route-home-show select.dropdown {
+        position: relative;
+        width: 70px;
+    }
+}
+/*# sourceMappingURL=show.css.map */

@@ -59,7 +59,7 @@ class LoginController extends Controller
 
     public function viewLogin()
     {
-        return view('auth.login');
+        return view('auth.login.index');
     }
 
     // ADMIN

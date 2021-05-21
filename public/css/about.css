@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+body {
+    background-color: white;
+    font-family: "Lexend Deca", sans-serif;
+    color: #7953a9;
+}
+
+.route-home-about .konten {
+    margin-top: 100px;
+}
+
+.route-home-about .custom-box {
+    background: rgba(139, 116, 189, 0.66);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+.route-home-about .custom-box h5,
+.route-home-about .custom-box h2 {
+    color: white;
+    text-align: center;
+}
+
+.route-home-about .custom-box ul li,
+.route-home-about .custom-box ol li,
+.route-home-about .custom-box p,
+.route-home-about .custom-box h3 {
+    color: white;
+}
+
+.route-home-about .background {
+    background-color: #663399;
+    margin-top: 50px;
+    padding: 30px;
+}
+
+.route-home-about footer p {
+    color: white;
+}
+/*# sourceMappingURL=main.css.map */

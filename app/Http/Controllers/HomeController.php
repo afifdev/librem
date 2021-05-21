@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Book, Kind};
+use Illuminate\Pagination\simplePaginate;
+use App\Models\{Book, Kind, Rule};
 
 class HomeController extends Controller
 {
@@ -12,7 +13,7 @@ class HomeController extends Controller
     {
         $kinds = Kind::all();
         $pathImage = '/images/home/';
-        return view('Home.index', compact('kinds', 'pathImage'));
+        return view('index', compact('kinds', 'pathImage'));
     }
 
     public function show($kind)
@@ -31,16 +32,15 @@ class HomeController extends Controller
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
                 ->join('grades', 'grades.id', '=', 'books.grade_id')
-                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'grades.level as grade', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->get();
+                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'grades.level as grade', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->simplePaginate(1);
         } else {
             $books = DB::table('kinds')->where('kinds.name',$kind)
                 ->join('categories', 'categories.kind_id', '=', 'kinds.id')
                 ->join('books', 'books.category_id', '=', 'categories.id')
                 ->join('writers', 'writers.id', '=', 'books.writer_id')
-                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->get();
+                ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->simplePaginate(1);
         }
-        // $books = Book::where('kind_id', $kind_id)->get();
-        return view('Home.show', compact('books', 'kind', 'categories'));
+        return view('show', compact('books', 'kind', 'categories'));
     }
 
     public function handleSearch($kind)
@@ -90,11 +90,16 @@ class HomeController extends Controller
                 ->select('books.code as code', 'books.title as title', 'books.availability as availability', 'categories.name as category', 'writers.name as writer', 'books.isbn as isbn')->where($query)->get();
         }
         $categories = Kind::find($kind_id)->categories;
-        return view('Home.show', compact('books', 'kind', 'categories'));
+        return view('show', compact('books', 'kind', 'categories'));
     }
 
     public function about()
     {
-        return view('Home.about');
+        return view('about');
+    }
+
+    public function rule() {
+        $rules = Rule::all();
+        return view('rule', compact('rules'));
     }
 }

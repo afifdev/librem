@@ -15,15 +15,15 @@ class StudentController extends Controller
     // [VIEW/GET] localhost:8000/admin/student
     public function index()
     {
-        if (auth()->guard('admin')->check()) {
-            $students = Student::cursorPaginate(3);
+        // if (auth()->guard('admin')->check()) {
+        //     $students = Student::cursorPaginate(3);
 
-            return view('Admin.Student.index', compact('students'));
-        }
+        //     return view('Admin.Student.index', compact('students'));
+        // }
 
-        $kinds = Kind::all();
-        $pathImage = '/images/home/';
-        return view('Home.index', compact('kinds', 'pathImage'));
+        // $kinds = Kind::all();
+        // $pathImage = '/images/home/';
+        return view('auth.admin.student.index');
     }
 
     // [VIEW/GET] localhost:8000/admin/student/register
@@ -31,13 +31,13 @@ class StudentController extends Controller
     {
         $grades = Grade::all();
         $majors = Major::all();
-        return view('Admin.Student.register', compact('grades', 'majors'));
+        return view('auth.admin.student.register', compact('grades', 'majors'));
     }
 
     // [VIEW/GET] localhost:8000/admin/student/:id
     public function detail()
     {
-        return view('Admin.Student.detail');
+        return view('auth.admin.student.detail');
     }
 
     // [VIEW/GET] localhost:8000/admin/student/:id/edit
@@ -53,7 +53,7 @@ class StudentController extends Controller
         $majors = Major::all();
         $student = Student::where('id', $id)->get();
         $student = $student[0];
-        return view('Admin.Student.edit', compact('student', 'grades', 'majors'));
+        return view('auth.admin.student.edit', compact('student', 'grades', 'majors'));
     }
 
     public function store(StoreStudentRequest $request, Student $student)
