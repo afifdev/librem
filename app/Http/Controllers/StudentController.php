@@ -23,7 +23,8 @@ class StudentController extends Controller
 
         // $kinds = Kind::all();
         // $pathImage = '/images/home/';
-        return view('auth.admin.student.index');
+        $students = Student::all();
+        return view('auth.admin.student.index', compact('students'));
     }
 
     // [VIEW/GET] localhost:8000/admin/student/register
@@ -79,5 +80,19 @@ class StudentController extends Controller
 
         return redirect()->route('student')
             ->with('success', 'Student Berhasil Dihapus');
+    }
+    public function handleSearch()
+    {
+        $form = request();
+        if (isset($form->search)) {
+            $students = Student::where('name', 'like', '%' . $form->search . '%')
+                ->orWhere('nis', 'like', '%' . $form->search . '%')
+                ->orWhere('start_year', 'like', '%' . $form->search . '%')
+                ->orWhere('start_year', 'like', '%' . $form->search . '%')
+                ->get();
+        } else {
+            $students = Student::all();
+        }
+        return view('auth.admin.student.index', compact('students'));
     }
 }

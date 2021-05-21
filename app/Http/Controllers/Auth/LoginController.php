@@ -46,13 +46,13 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-        if ($request->roles == 'admin') {
+        if ($request->level == 'admin') {
             return $this->adminLogin($request);
         }
-        if ($request->roles == 'student') {
+        if ($request->level == 'student') {
             return $this->studentLogin($request);
         }
-        if ($request->roles == 'teacher') {
+        if ($request->level == 'teacher') {
             return $this->teacherLogin($request);
         }
     }

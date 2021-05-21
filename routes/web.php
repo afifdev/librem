@@ -29,6 +29,7 @@ Route::put('/admin/transaction/{id}', [TransactionController::class, 'update'])-
 Route::delete('/admin/transaction/{id}', [TransactionController::class, 'delete'])->name('trans_delete');
 
 Route::get('/admin/student', [StudentController::class, 'index'])->name('student');
+Route::post('/admin/student', [StudentController::class, 'handleSearch'])->name('student_search');
 Route::get('/admin/student/register', [StudentController::class, 'register'])->name('student_register');
 Route::get('/admin/student/{student:id}', [StudentController::class, 'detail'])->name('student_detail');
 Route::get('/admin/student/{student:id}/edit', [StudentController::class, 'edit'])->name('student_edit');

@@ -54,9 +54,12 @@
             </div>
             <div class="mem-new">
                 <p><i class="fas fa-user-friends"></i>Students</p>
-                <form class="search">
-                    <input type="text" name="search" placeholder="search...">
-                    <button class="btn-search">search</button>
+                <form action="{{route('student_search') }}" method="POST">
+                    @csrf
+                    <input name="search" type="search" id="form1" class="form-control"
+                        placeholder="Search for Students..." aria-label="Search" />
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <br><br>
                 </form>
             </div>
             <!-- tabel -->
@@ -69,25 +72,30 @@
                             <th>NAME</th>
                             <th>TAHUN MASUK</th>
                             <th>KELAS</th>
-                            <th>GRADUATED</th>
+                            <th>STATUS</th>
                             <th colspan="2" class="col">AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($students as $student)
+
                         <tr>
-                            <td>1</td>
-                            <td>1234567890123</td>
-                            <td>Durrotun Nafisah</td>
-                            <td>2016</td>
-                            <td>MIPA 3</td>
-                            <td>2019</td>
+                            <td>{{ $loop->index+1 }}</td>
+                            <td>{{ $student->nis }}</td>
+                            <td>{{ $student->name }}</td>
+                            <td>{{ $student->start_year }}</td>
+                            <td>{{ $student->grade->level.' '.$student->major->name.' '. $student->major->level}}</td>
+                            <td>{{ $student->graduated }}</td>
                             <td colspan="2" class="col">
                                 <a href="ubahStudent.html" class="edit"><i class="fas fa-edit"></i></a>
-                                <form action="{{ route('student_delete', $student->id) }}" method="post">
-                                    <button type="submit" class="del"><i class="fas fa-trash-alt p-2"></i></button>
-                                </form>
+                                {{-- <form action="{{ route('student_delete', $student->id) }}" method="post">
+                                <button type="submit" class="del"><i class="fas fa-trash-alt p-2"></i></button>
+                                </form> --}}
                             </td>
                         </tr>
+                        @empty
+                        Tidak ada data
+                        @endforelse
                     </tbody>
                 </table>
                 <!-- end tabel -->
