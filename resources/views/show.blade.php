@@ -54,11 +54,11 @@
             </select>
             <br>
             @if ($kind === 'courses')
-            <select class="dropdown">
+            <select class="dropdown" name="grade">
                 <div class="dropdown-select">
                     <i class="fa fa-angle-down icon"></i>
                 </div>
-                <div name="grade" class="dropdown-list">
+                <div class="dropdown-list">
                     <option value="all">Kelas</option>
                     <option value="10">X</option>
                     <option value="11">XI</option>

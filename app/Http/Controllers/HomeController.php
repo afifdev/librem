@@ -75,7 +75,6 @@ class HomeController extends Controller
         if ($form->course && $form->course !== 'all') {
             array_push($query, array('categories.name', 'LIKE', '%' . $form->course . '%'));
         }
-        dd($query);
         if ($kind === 'courses') {
             $books = DB::table('kinds')->where('kinds.name', $kind)
                 ->join('categories', 'categories.kind_id', '=', 'kinds.id')
