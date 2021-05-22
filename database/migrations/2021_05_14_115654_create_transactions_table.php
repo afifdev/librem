@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->string('book_code');
             $table->foreignId('student_nis')->nullable();
             $table->foreignId('teacher_nip')->nullable();
+            $table->foreignId('admin_id');
             $table->string('user_type');
             $table->string('status');
             $table->timestamps();
