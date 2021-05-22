@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTeacherRequest;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class TeacherController extends Controller
@@ -32,15 +33,15 @@ class TeacherController extends Controller
     }
 
     // [VIEW/GET] localhost:8000/admin/teacher/:id/edit
-    public function edit($id)
+    public function edit($nip)
     {
         // Check if url false
-        $get_teacher_id = Teacher::where('id', $id)->get();
+        $get_teacher_id = Teacher::where('nip', $nip)->get();
         if ($get_teacher_id->isEmpty()) {
             abort(404);
         }
 
-        $teacher = Teacher::where('id', $id)->get();
+        $teacher = Teacher::where('nip', $nip)->get();
         $teacher = $teacher[0];
         return view('auth.admin.teacher.edit', compact('teacher'));
     }
@@ -48,14 +49,26 @@ class TeacherController extends Controller
     public function store(StoreTeacherRequest $request, Teacher $teacher)
     {
         $attr = $request->all();
+        $attr['password'] = Hash::make($attr['password']);
         Teacher::create($attr);
-        return redirect()->route('teacherRegister')
+        return redirect()->route('teacher_register')
             ->with('success', 'Teacher Berhasil Ditambahkan');
     }
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
+        if (!Hash::check($request->currentpwd, $teacher->password)) {
+            dd($request->currentpwd);
+        }
         $attr = $request->all();
+        if (!$request->password && !$request->password_confirmation) {
+            // sama sama gak diset
+            unset($attr['password']);
+            unset($attr['confirmation_password']);
+        } else if ($request->password && $request->password_confirmation && $request->password === $request->password_confirmation) {
+            // ada password dan konfirmasi dan nilainya sama
+            $attr['password'] = Hash::make($attr['password']);
+        }
         $teacher->update($attr);
 
         return redirect()->route('teacher')
@@ -68,5 +81,15 @@ class TeacherController extends Controller
 
         return redirect()->route('teacher')
             ->with('success', 'Teacher Berhasil Dihapuss');
+    }
+    public function handleSearch()
+    {
+        $form = request();
+        if ($form->search) {
+            $teachers = Teacher::where('name', 'like', '%' . $form->search . '%')->get();
+        } else {
+            $teachers = Teacher::all();
+        }
+        return view('auth.admin.teacher.index', compact('teachers'));
     }
 }

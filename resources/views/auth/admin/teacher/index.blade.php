@@ -14,6 +14,17 @@
         @if(session()->has('success'))
         <p> {{ session()->get('success') }}</p>
         @endif
+        <div class="mem-new">
+            <p><i class="fas fa-user-friends"></i>Teacher</p>
+            <form action="{{route('teacher_search') }}" method="POST">
+                @csrf
+                <input name="search" type="search" id="form1" class="form-control" placeholder="Search for Teachers ..."
+                    aria-label="Search" />
+                <button type="submit" class="btn btn-primary">Search</button>
+                <br><br>
+            </form>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>
@@ -36,9 +47,9 @@
                     <td>{{ $teacher->gender }}</td>
                     <td>{{ $teacher->born_date }}</td>
                     <td>{{ $teacher->born_place }}</td>
-                    <td><a href="{{ route('teacherEdit', $teacher->id) }}">Edit</a></td>
+                    <td><a href="{{ route('teacher_edit', $teacher->nip) }}">Edit</a></td>
                     <td>
-                        <form action="{{ route('teacherDelete', $teacher->id) }}" method="post">
+                        <form action="{{ route('teacher_delete', $teacher->nip) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

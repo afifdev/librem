@@ -24,8 +24,8 @@ class UpdateTeacherRequest extends FormRequest
     public function rules()
     {
         return [
-            'nip' => 'required|unique:teachers,nip,' . $this->teacher->nip . ',nip|max:18|min:18|',
-            'password' => 'required|confirmed|min:6',
+            'currentpwd' => 'required',
+            'password' => 'confirmed',
             'name' => 'required',
             'gender' => 'required|max:1|min:0',
             'born_date' => 'required',

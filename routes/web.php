@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::delete('/admin/student/{student:nis}/delete', [StudentController::class, 'delete'])->name('student_delete');
 
     Route::get('/admin/teacher', [TeacherController::class, 'index'])->name('teacher');
+    Route::post('/admin/teacher', [TeacherController::class, 'handleSearch'])->name('teacher_search');
     Route::get('/admin/teacher/register', [TeacherController::class, 'register'])->name('teacher_register');
     Route::get('/admin/teacher/{teacher:nip}', [TeacherController::class, 'detail'])->name('teacher_detail');
     Route::get('/admin/teacher/{teacher:nip}/edit', [TeacherController::class, 'edit'])->name('teacher_edit');
