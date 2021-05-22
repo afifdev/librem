@@ -23,4 +23,7 @@ class Transaction extends Model
     public function detail() {
         return $this->hasOne(Detail::class);
     }
+    public function admin() {
+        return $this->hasOne(Admin::class);
+    }
 }
