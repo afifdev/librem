@@ -1,75 +1,56 @@
-@if(session()->has('success'))
-<p> {{ session()->get('success') }}</p>
-@endif
-<form action=" {{ route('teacher_store') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    @method('post')
-
-    <label for="nip">NIP :</label>
-    <input type="text" name="nip" maxlength="18">
-    @if ($errors->has('nip'))
-    <span class="text-danger">{{ $errors->first('nip') }}</span>
-    @endif
-    <br>
-
-    <label for="password">Password:</label>
-    <input type="text" name="password">
-    @if ($errors->has('password'))
-    <span class="text-danger">{{ $errors->first('password') }}</span>
-    @endif
-    <br>
-
-    <label for="password_confirmation">Confirmation Password:</label>
-    <input type="text" name="password_confirmation">
-    @if ($errors->has('password_confirmation'))
-    <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
-    @endif
-    <br>
-
-    <label for="name">Name:</label>
-    <input type="text" name="name">
-    @if ($errors->has('name'))
-    <span class="text-danger">{{ $errors->first('name') }}</span>
-    @endif
-    <br>
-
-    <label for="gender">Gender:</label>
-    <select name="gender" id="gender">
-        <option value="0">Laki-laki</option>
-        <option value="1">Perempuan</option>
-    </select>
-    @if ($errors->has('gender'))
-    <span class="text-danger">{{ $errors->first('gender') }}</span>
-    @endif
-    <br>
-
-    <label for="born_date">Born Date:</label>
-    <input type="date" name="born_date">
-    @if ($errors->has('born_date'))
-    <span class="text-danger">{{ $errors->first('born_date') }}</span>
-    @endif
-    <br>
-
-    <label for="born_place">Born Place:</label>
-    <input type="text" name="born_place">
-    @if ($errors->has('born_place'))
-    <span class="text-danger">{{ $errors->first('born_place') }}</span>
-    @endif
-    <br>
-
-    <label for="address">Address:</label>
-    <textarea name="address" id="" cols="20" rows="3"></textarea>
-    @if ($errors->has('address'))
-    <span class="text-danger">{{ $errors->first('address') }}</span>
-    @endif
-    <br>
-
-    <label for="phone">Phone:</label>
-    <input type="text" name="phone">
-    @if ($errors->has('phone'))
-    <span class="text-danger">{{ $errors->first('phone') }}</span>
-    @endif
-    <br>
-
-    <button type="submit">Tambah</button>
-</form>
+@extends('layouts.admin.app')
+@section('header')
+<link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
+@endsection
+@section('content')
+<div class="container" style="margin-left: 40vh;">
+    <form action=" {{ route('teacher_store') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        @method('post')
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="nip" class="form-label">NIP</label>
+                <input type="text" name="nip" maxlength="18" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="text" name="password" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                <input type="text" name="password_confirmation" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="name" class="form-label">Nama</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="gender" class="form-label">Gender</label>
+                <select name="gender" id="form-select">
+                    <option value="0">Laki-laki</option>
+                    <option value="1">Perempuan</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="born_place" class="form-label">Tempat Lahir</label>
+                <input type="text" name="born_place" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="born_date" class="form-label">Tanggal Lahir</label>
+                <input type="date" name="born_date" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="address" class="form-label">Alamat</label>
+                <textarea name="address" cols="20" rows="3" class="form-control"></textarea>
+            </div>
+            <div class="col-md-4">
+                <label for="phone" class="form-label">Phone:</label>
+                <input type="text" name="phone" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success">Tambah</button>
+            </div>
+        </div>
+    </form>
+</div>
+@endsection
