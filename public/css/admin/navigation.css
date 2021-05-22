@@ -1,55 +1,40 @@
-.route-auth-admin-navigation header {
+.route-admin-navbar {
     background-color: #8052ad;
-    padding: 10px;
+    padding: 0 2rem;
     max-width: 100%;
 }
 
-.route-auth-admin-navigation header nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+.librem {
+    font-size: 2rem;
+    font-weight: bold;
 }
 
-.route-auth-admin-navigation .librem {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.route-auth-admin-navigation .librem h2 {
+.librem,
+.halo {
     color: white;
-    padding: 4px 0 4px 40px;
-    font-size: 35px;
 }
 
-.route-auth-admin-navigation .profile {
-    display: -webkit-box;
-    display: -ms-flexbox;
+.route-admin-sidenav {
+    height: 100vh;
+    position: fixed;
+    background-color: #c7bddb;
+}
+
+.route-admin-sidenav .container {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.route-auth-admin-navigation .profile .avatar {
-    -ms-flex-preferred-size: 20%;
-    flex-basis: 20%;
-    margin-right: 13px;
+.route-admin-sidenav .container a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    padding: 1rem 4rem 1rem 1.2rem;
 }
 
-.route-auth-admin-navigation .profile .avatar img {
-    width: 100%;
-}
-
-.route-auth-admin-navigation .profile .halo {
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    font-size: 13px;
-}
-
-.route-auth-admin-navigation .profile .halo p {
-    width: 100%;
-    color: white;
-    margin-top: 10px;
-    /* padding-left: 20px; */
+.route-admin-sidenav .container a svg {
+    height: 24px;
+    width: 24px;
+    vertical-align: top;
 }

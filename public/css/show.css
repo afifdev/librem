@@ -15,6 +15,11 @@ body {
 .route-home-navigation .custom-nav {
     background-color: white;
 }
+
+.route-home-show {
+    padding: 0 2rem;
+}
+
 .route-home-show li {
     margin: 25px 25px;
 }
@@ -27,23 +32,15 @@ body {
     font-size: 18px;
 }
 
-.route-home-show .form-control {
+/* .route-home-show .form-control {
     background-color: #e5e5e5;
-}
+} */
 
 .route-home-show .terpinjam {
     background-color: #e5e5e5;
     display: block;
     border-radius: 5px;
     padding: 3px 10px;
-}
-
-.route-home-show select.dropdown {
-    position: relative;
-    background-color: #e5e5e5;
-    width: 250px;
-    border: none;
-    border-radius: 5px;
 }
 
 .route-home-show .pagination {

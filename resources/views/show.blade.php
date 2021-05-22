@@ -35,97 +35,116 @@
         <!-- searching -->
         <form action="{{route('search_books', ['kind' => $kind])}}" method="POST">
             @csrf
-            <div class="form-outline">
-                <input type="search" name="search" id="form1" class="form-control" placeholder="Search for anything...."
-                    aria-label="Search" />
+            {{-- <div class="form-outline"> --}}
+            <div class="row">
+                <div class="col-10 py-2">
+                    <input type="search" name="search" id="form1" class="form-control"
+                        placeholder="Search for anything...." aria-label="Search" />
+                </div>
+                {{-- </div> --}}
+                <div class="col-auto py-2">
+                    <select name="search_by" class="form-select">
+                        <option value="all">Search By</option>
+                        <option value="code">code</option>
+                        <option value="title">title</option>
+                        <option value="writer">writer</option>
+                        <option value="isbn">isbn</option>
+                    </select>
+                </div>
             </div>
-            <select name="search_by" class="form-select">
-                <option value="all">Search By</option>
-                <option value="code">code</option>
-                <option value="title">title</option>
-                <option value="writer">writer</option>
-                <option value="isbn">isbn</option>
-            </select>
-            <h3>Filter</h3>
-            <select name="availability" class="form-select">
-                <option value="all">Status buku . . .</option>
-                <option value="tersedia">tersedia</option>
-                <option value="terpinjam">terpinjam</option>
-            </select>
             <br>
-            @if ($kind === 'courses')
-            <select class="dropdown" name="grade">
-                <div class="dropdown-select">
-                    <i class="fa fa-angle-down icon"></i>
+            <h3>Filter</h3>
+            <div class="row">
+                <div class="col-auto py-2">
+                    <select name="availability" class="form-select">
+                        <option value="all">Status buku . . .</option>
+                        <option value="tersedia">tersedia</option>
+                        <option value="terpinjam">terpinjam</option>
+                    </select>
                 </div>
-                <div class="dropdown-list">
-                    <option value="all">Kelas</option>
-                    <option value="10">X</option>
-                    <option value="11">XI</option>
-                    <option value="12">XII</option>
+                @if ($kind === 'courses')
+                <div class="col-auto py-2">
+                    <select class="form-select" name="grade">
+                        <div class="dropdown-select">
+                            <i class="fa fa-angle-down icon"></i>
+                        </div>
+                        <div class="dropdown-list">
+                            <option value="all">Kelas</option>
+                            <option value="10">X</option>
+                            <option value="11">XI</option>
+                            <option value="12">XII</option>
+                        </div>
+                    </select>
                 </div>
-            </select>
-            &emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;&emsp14;
-            @endif
-            <select class="dropdown" name="course">
-                <div class="dropdown-select">
-                    <i class="fa fa-angle-down icon"></i>
+                @endif
+                <div class="col-auto py-2">
+                    <select class="form-select" name="course">
+                        <div class="dropdown-select">
+                            <i class="fa fa-angle-down icon"></i>
+                        </div>
+                        <div class="dropdown-list">
+                            <option value="all">Kategori</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->name}}">{{$category->name}}</option>
+                            @endforeach
+                        </div>
+                    </select>
                 </div>
-                <div class="dropdown-list">
-                    <option value="all">Kategori</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->name}}">{{$category->name}}</option>
-                    @endforeach
+                <br>
+                <div class="col-auto py-2">
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
-            </select>
-            <button type="submit" class="btn btn-primary">Search</button>
+            </div>
         </form>
         <br><br>
         <!-- tabel -->
-        <table class="table ">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Buku</th>
-                    <th>Kode</th>
-                    <th>Penulis</th>
-                    <th>Kategori</th>
-                    {{-- kalau dalam kategori course maka tampilkan kolom kelas --}}
-                    @if ($kind === 'courses')
-                    <th>Kelas</th>
-                    @endif
-                    <th>ISBN</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
+        <div class="table-responsive">
 
-            <tbody>
-                @foreach ($books as $book)
-                <tr>
-                    <td>{{$loop->index + 1}}</td>
-                    <td>{{$book->title}}</td>
-                    <td>{{$book->code}}</td>
-                    <td>{{$book->writer}}</td>
-                    <td>{{$book->category}}</td>
-                    @if ($kind === 'courses')
-                    <td>{{$book->grade}}</td>
-                    @endif
-                    <td>{{$book->isbn}}</td>
-                    <td>{{$book->availability === 1 ? 'tersedia' : 'terpinjam'}}</td>
-                </tr>
-                @endforeach
-                {{-- <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td></td>
-                </tr> --}}
-            </tbody>
-        </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Buku</th>
+                        <th>Kode</th>
+                        <th>Penulis</th>
+                        <th>Kategori</th>
+                        {{-- kalau dalam kategori course maka tampilkan kolom kelas --}}
+                        @if ($kind === 'courses')
+                        <th>Kelas</th>
+                        @endif
+                        <th>ISBN</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($books as $book)
+                    <tr>
+                        <td>{{$loop->index + 1}}</td>
+                        <td>{{$book->title}}</td>
+                        <td>{{$book->code}}</td>
+                        <td>{{$book->writer}}</td>
+                        <td>{{$book->category}}</td>
+                        @if ($kind === 'courses')
+                        <td>{{$book->grade}}</td>
+                        @endif
+                        <td>{{$book->isbn}}</td>
+                        <td>{{$book->availability === 1 ? 'tersedia' : 'terpinjam'}}</td>
+                    </tr>
+                    @endforeach
+                    {{-- <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td></td>
+                    </tr> --}}
+                </tbody>
+            </table>
+        </div>
         <!-- paginate -->
         <nav aria-label="Page navigation example">
             <div class="pagination">
