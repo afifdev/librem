@@ -47,7 +47,9 @@
         </div>
         {{-- <div class="col-md-4">
             <label for="" class="form-label">Gambar/Foto</label> --}}
-        <p class="form-control"><img src="{{asset('images/'.$book->image)}}" alt=""></p>
+        <p class="form-control"><img src="{{asset('/storage/'.$book->image)}}" alt=""
+                style="width: 20rem; height:auto;">
+        </p>
         {{-- </div> --}}
     </div>
 </div>

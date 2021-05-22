@@ -17,7 +17,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // If Login as Admin
-// Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
     Route::get('/admin/transaction', [TransactionController::class, 'index'])->name('transaction');
@@ -58,7 +58,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/admin/rule', [RuleController::class, 'index'])->name('rule');
     Route::post('/admin/rule', [RuleController::class, 'create'])->name('rule_register');
     Route::put('/admin/rule/{id}', [RuleController::class, 'updateAndDelete'])->name('rule_update');
-// });
+});
 
 // If Login as Student
 Route::group(['middleware' => 'auth:student'], function () {

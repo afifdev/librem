@@ -17,6 +17,12 @@
                         <a class="nav-link {{ request()->is('/') ? ' active':''}} " aria-current="page"
                             href="{{ route('homepage') }}">Home</a>
                     </li>
+                    @if (auth()->guard('teacher')->check() or auth()->guard('student')->check())
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('profile') ? ' active':''}}"
+                            href="{{ route('profile') }}">Profile</a>
+                    </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('rule') ? ' active':''}}"
                             href="{{ route('home-rule') }}">Tata
@@ -30,9 +36,8 @@
                     @if (auth()->guard('teacher')->check())
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> <img
-                                src="{{ asset('images/home/Avatar.png') }}"
-                                alt="profil" />{{ auth()->guard('teacher')->user()->name }} </a>
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ auth()->guard('teacher')->user()->name }} </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item custom-dropdown" href="{{ route('logout') }}">LOGOUT</a></li>
                         </ul>
@@ -40,9 +45,8 @@
                     @elseif (auth()->guard('student')->check())
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> <img
-                                src="{{ asset('images/home/Avatar.png') }}"
-                                alt="profil" />{{ auth()->guard('student')->user()->name }} </a>
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ auth()->guard('student')->user()->name }} </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item custom-dropdown" href="{{ route('logout') }}">LOGOUT</a></li>
                         </ul>
