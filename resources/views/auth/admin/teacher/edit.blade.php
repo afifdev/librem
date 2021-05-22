@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label">Nama</label>
-                <p class="form-control" readonly>{{$teacher->name}}</p>
+                <input type="text" name="name" class="form-control" value="{{$teacher->name}}" />
             </div>
             <div class="col-md-4">
                 <label class="form-label">NIS</label>
@@ -54,8 +54,8 @@
                 <textarea name="address" class="form-control" cols="20" rows="3">{{$teacher->address}}</textarea>
             </div>
             <div class="col-md-12">
-                <label for="phone_number" class="form-label">Phone:</label>
-                <input type="text" name="phone_number" class="form-control" value="{{$teacher->phone}}">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" value="{{$teacher->phone}}">
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-success">Update!</button>

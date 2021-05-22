@@ -28,7 +28,6 @@ class StoreBookRequest extends FormRequest
      */
     public function rules()
     {
-        $kinds = Kind::all();
         $categories = Category::all();
         $writers = Writer::all();
         $publishers = Publisher::all();
@@ -52,14 +51,13 @@ class StoreBookRequest extends FormRequest
 
         return [
             'code' => 'required|unique:books,code',
-            'kind_id' => 'required',
+            'kind_id' => 'required|in:1,2,3,4,5,6',
             'category_id' => $validation_category_id,
             'writer_id' => $validation_writer_id,
             'publisher_id' => 'required',
             'title' => 'required|max:255',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-            'avalaibility' => 'required|numeric|min:0|max:1',
             'isbn' => 'required',
             // CUSTOM FIELD
             'custom_publisher_name' => $validation_publisher,

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Transaction, Book, Teacher, Student, Detail};
+use App\Models\{Transaction, Book, Teacher, Student, Detail, Admin};
 use App\Http\Requests\{StoreTransactionRequest, UpdateTransactionRequest};
 
 class TransactionController extends Controller
@@ -17,33 +17,8 @@ class TransactionController extends Controller
 
     public function search()
     {
-        $form = request();
-        $query = array();
-        if ($form->search && in_array($form->search_by, array('transaction_code', 'book_title', 'user', 'librarian'))) {
-            if ($form->search_by === 'transaction_code') {
-                $form->search_by = 'transactions.id';
-            }
-            if ($form->search_by === 'book_title') {
-                $form->search_by = 'books.title';
-            }
-            if ($form->search_by === 'user') {
-                $form->search_by = 'students.name';
-            }
-            if ($form->search_by === 'librarian') {
-                $form->search_by = 'teachers.name';
-            }
-            array_push($query, array($form->search_by, 'LIKE', '%' . $form->search . '%'));
-        }
-        if ($form->status !== 'all' && in_array($form->status, array('borrowed', 'debt', 'done'))) {
-            array_push($query, array('status', 'LIKE', '%' . $form->status . '%'));
-        }
-        $transactions = DB::table('transactions')
-            ->join('books', 'transactions.book_code', '=', 'books.code')
-            ->join('students', 'transactions.student_nis', '=', 'students.nis')
-            ->join('teachers', 'transactions.teacher_nip', '=', 'teachers.nip')
-            ->select('transactions.*', 'books.title', 'students.name as student_name', 'teachers.name as teacher_name')
-            ->where($query)
-            ->get();
+        $id = request()->search;
+        $transactions = Transaction::where('id','like','%'.$id.'%')->get();
         return view('auth.admin.transaction.index', compact('transactions'));
     }
     public function register()

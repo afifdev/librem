@@ -26,7 +26,6 @@ class UpdateStudentRequest extends FormRequest
         return [
             'currentpwd' => 'required',
             'password' => 'confirmed',
-            'name' => 'required',
             'gender' => 'required|max:1|min:0',
             'born_date' => 'required',
             'born_place' => 'required',

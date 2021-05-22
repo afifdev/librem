@@ -16,7 +16,7 @@
                 <div class="col-md-4">
                     <label class="form-label">User Number</label>
                     <p class="form-control" readonly>
-                        {{$transaction->student->nis ? $transaction->student->nis:$transaction->teacher->nip}}</p>
+                        {{$transaction->student ? $transaction->student->nis:$transaction->teacher->nip}}</p>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Tipe</label>

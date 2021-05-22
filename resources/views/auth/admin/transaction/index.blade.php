@@ -16,9 +16,6 @@
                 <div class="col-auto">
                     <select name="search_by" class="form-select">
                         <option value="transaction_code">Kode Transaksi</option>
-                        <option value="book_title">Judul</option>
-                        <option value="user">User</option>
-                        <option value="librarian">Pustakawan</option>
                     </select>
                 </div>
             </div>
@@ -54,7 +51,8 @@
                 <tr>
                     <td class="align-middle" scope="row">{{$loop->index+1}}</td>
                     <td class="align-middle">{{$transaction->id}}</td>
-                    <td class="align-middle">{{$transaction->book->title}}</td>
+                    <td class="align-middle">{{$transaction->book ? $transaction->book->title : $transaction->book}}
+                    </td>
                     <td class="align-middle">
                         {{$transaction->student ? $transaction->student->name:$transaction->teacher->name}}</td>
                     <td class="align-middle">{{$transaction->admin->name}}</td>

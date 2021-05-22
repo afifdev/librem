@@ -46,7 +46,7 @@
                 <input type="text" class="form-control" name="born_place" value="{{$student->born_place}}">
             </div>
             <div class="col-md-6">
-                <label for="born_date" class="form-date">Tanggal Lahir</label>
+                <label for="born_date" class="form-label">Tanggal Lahir</label>
                 <input type="date" class="form-control" name="born_date" value="{{$student->born_date}}">
             </div>
             <div class="col-md-12">

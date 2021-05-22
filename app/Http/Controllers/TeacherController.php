@@ -52,14 +52,13 @@ class TeacherController extends Controller
         $attr = $request->all();
         $attr['password'] = Hash::make($attr['password']);
         Teacher::create($attr);
-        return redirect()->route('teacher_register')
-            ->with('success', 'Teacher Berhasil Ditambahkan');
+        return redirect()->route('teacher');
     }
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
         if (!Hash::check($request->currentpwd, $teacher->password)) {
-            dd($request->currentpwd);
+            return redirect()->back();
         }
         $attr = $request->all();
         if (!$request->password && !$request->password_confirmation) {
@@ -72,8 +71,8 @@ class TeacherController extends Controller
         }
         $teacher->update($attr);
 
-        return redirect()->route('teacher')
-            ->with('success', 'Teacher Berhasil Diubah');
+        return redirect()->route('teacher');
+            // ->with('success', 'Teacher Berhasil Diubah');
     }
 
     public function delete(Teacher $teacher)
