@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.admin.app')
+@section('header')
+<link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
+@endsection
+
+
+@section('content')
+<div class="container" style="margin-left: 40vh">
     <form action="{{route('trans_search')}}" method="POST">
         @method('post')
         @csrf
@@ -39,17 +38,17 @@
             <th>Action</th>
         </tr>
         @foreach ($transactions as $transaction)
-            <tr>
-                <td>{{$loop->index+1}}</td>
-                <td>{{$transaction->id}}</td>
-                <td>{{$transaction->title}}</td>
-                <td>{{$transaction->student_name}}</td>
-                <td>{{$transaction->teacher_name}}</td>
-                <td>{{$transaction->status}}</td>
-                <td><a href="{{route('trans_show', ['id' => $transaction->id])}}">view</a></td>
-            </tr>
+        <tr>
+            <td>{{$loop->index+1}}</td>
+            <td>{{$transaction->id}}</td>
+            <td>{{$transaction->title}}</td>
+            <td>{{$transaction->student_name ? $transaction->student_name:$transaction->teacher_name}}</td>
+            <td>{{$transaction->admin_name}}</td>
+            <td>{{$transaction->status}}</td>
+            <td><a href="{{route('trans_show', ['id' => $transaction->id])}}">view</a></td>
+        </tr>
         @endforeach
     </table>
     <a href="{{route('trans_register')}}">Add New Book</a>
-</body>
-</html>
+</div>
+@endsection

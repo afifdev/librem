@@ -10,12 +10,13 @@ use App\Models\Major;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Pagination\simplePaginate;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::all();
+        $students = Student::simplePaginate(10);
         return view('auth.admin.student.index', compact('students'));
     }
 
@@ -94,9 +95,9 @@ class StudentController extends Controller
     {
         $form = request();
         if ($form->search) {
-            $students = Student::where('name', 'like', '%' . $form->search . '%')->get();
+            $students = Student::where('name', 'like', '%' . $form->search . '%')->simplePaginate(10);
         } else {
-            $students = Student::all();
+            $students = Student::simplePaginate(10);
         }
         return view('auth.admin.student.index', compact('students'));
     }

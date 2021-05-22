@@ -25,8 +25,10 @@ class StoreTransactionRequest extends FormRequest
     {
         return [
             'book_code' => 'required',
-            'student_nis' => 'required|numeric',
-            'teacher_nip' => 'required',
+            // 'student_nis' => 'required|numeric',
+            // 'teacher_nip' => 'required',
+            'user_number' => 'required|numeric',
+            'user' => 'required|in:student,teacher',
             'type' => 'required|in:paket,reguler',
             'due_date' => 'required|date|after:today',
             'detail' => 'required',

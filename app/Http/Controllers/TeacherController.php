@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Pagination\simplePaginate;
+
 
 class TeacherController extends Controller
 {
     // [VIEW/GET] localhost:8000/admin/teacher
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::simplePaginate(10);
         return view('auth.admin.teacher.index', compact('teachers'));
     }
 
@@ -86,9 +88,9 @@ class TeacherController extends Controller
     {
         $form = request();
         if ($form->search) {
-            $teachers = Teacher::where('name', 'like', '%' . $form->search . '%')->get();
+            $teachers = Teacher::where('name', 'like', '%' . $form->search . '%')->simplePaginate(10);
         } else {
-            $teachers = Teacher::all();
+            $teachers = Teacher::simplePaginate(10);
         }
         return view('auth.admin.teacher.index', compact('teachers'));
     }

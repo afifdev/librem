@@ -13,13 +13,15 @@ use App\Models\Writer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\simplePaginate;
+
 
 class BookController extends Controller
 {
     // [VIEW/GET] localhost:8000/admin/books
     public function index()
     {
-        $books = Book::all();
+        $books = Book::simplePaginate(10);
         return view('auth.admin.book.index', compact('books'));
     }
 
@@ -159,9 +161,9 @@ class BookController extends Controller
     {
         $form = request();
         if (isset($form->search)) {
-            $books = Book::where('title', 'like', '%' . $form->search . '%')->get();
+            $books = Book::where('title', 'like', '%' . $form->search . '%')->simplePaginate(10);
         } else {
-            $books = Book::all();
+            $books = Book::simplePaginate(10);
         }
         return view('auth.admin.book.index', compact('books'));
     }

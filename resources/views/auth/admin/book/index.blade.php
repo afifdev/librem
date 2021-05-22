@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.admin.app')
+@section('header')
+<link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
+@endsection
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Document</title>
-</head>
 
-<body>
+@section('content')
+<div class="container" style="margin-left: 40vh">
     <div class="container">
         @if(session()->has('success'))
         <p> {{ session()->get('success') }}</p>
@@ -75,7 +70,8 @@
                 @endforelse
             </tbody>
         </table>
-    </div>
-</body>
 
-</html>
+        {{ $books->links() }}
+    </div>
+</div>
+@endsection

@@ -4,25 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Transaction,Book,Teacher,Student,Detail};
+use App\Models\{Transaction, Book, Teacher, Student, Detail};
 use App\Http\Requests\{StoreTransactionRequest, UpdateTransactionRequest};
 
 class TransactionController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $transactions = DB::table('transactions')
-                            ->join('books','transactions.book_code','=','books.code')
-                            ->join('students','transactions.student_nis','=','students.nis')
-                            ->join('teachers','transactions.teacher_nip','=','teachers.nip')
-                            ->select('transactions.*','books.title','students.name as student_name','teachers.name as teacher_name')
-                            ->get();
+            ->join('books', 'transactions.book_code', '=', 'books.code')
+            ->join('students', 'transactions.student_nis', '=', 'students.nis')
+            ->join('teachers', 'transactions.teacher_nip', '=', 'teachers.nip')
+            ->join('admins', 'transactions.admin_id', '=', 'admins.id')
+            ->select('transactions.*', 'books.title', 'students.name as student_name', 'teachers.name as teacher_name', 'admins.name as admin_name')
+            ->get();
+        dd($transactions);
         return view('auth.admin.transaction.index', compact('transactions'));
     }
-                        
-    public function search() {
+
+    public function search()
+    {
         $form = request();
         $query = array();
-        if ($form->search && in_array($form->search_by, array('transaction_code','book_title','user','librarian'))) {
+        if ($form->search && in_array($form->search_by, array('transaction_code', 'book_title', 'user', 'librarian'))) {
             if ($form->search_by === 'transaction_code') {
                 $form->search_by = 'transactions.id';
             }
@@ -35,25 +39,27 @@ class TransactionController extends Controller
             if ($form->search_by === 'librarian') {
                 $form->search_by = 'teachers.name';
             }
-            array_push($query, array($form->search_by,'LIKE','%'.$form->search.'%'));
+            array_push($query, array($form->search_by, 'LIKE', '%' . $form->search . '%'));
         }
-        if ($form->status !== 'all' && in_array($form->status, array('borrowed','debt','done'))) {
-            array_push($query, array('status','LIKE','%'.$form->status.'%'));
+        if ($form->status !== 'all' && in_array($form->status, array('borrowed', 'debt', 'done'))) {
+            array_push($query, array('status', 'LIKE', '%' . $form->status . '%'));
         }
         $transactions = DB::table('transactions')
-                            ->join('books','transactions.book_code','=','books.code')
-                            ->join('students','transactions.student_nis','=','students.nis')
-                            ->join('teachers','transactions.teacher_nip','=','teachers.nip')
-                            ->select('transactions.*','books.title','students.name as student_name','teachers.name as teacher_name')
-                            ->where($query)
-                            ->get();
+            ->join('books', 'transactions.book_code', '=', 'books.code')
+            ->join('students', 'transactions.student_nis', '=', 'students.nis')
+            ->join('teachers', 'transactions.teacher_nip', '=', 'teachers.nip')
+            ->select('transactions.*', 'books.title', 'students.name as student_name', 'teachers.name as teacher_name')
+            ->where($query)
+            ->get();
         return view('auth.admin.transaction.index', compact('transactions'));
     }
-    public function register() {
+    public function register()
+    {
         return view('auth.admin.transaction.register');
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $transaction = Transaction::find($id);
         if (!$transaction) {
             abort(404);
@@ -61,11 +67,9 @@ class TransactionController extends Controller
         return view('auth.admin.transaction.show', compact('transaction'));
     }
 
-    public function create(StoreTransactionRequest $request) {
-        $admin = auth()->guard('admin')->check();
-        if (!$admin) {
-            abort(403);
-        }
+    public function create(StoreTransactionRequest $request)
+    {
+        $admin = auth()->guard('admin')->user()->id;
         $form = $request;
         $book = Book::where('code', $form->book_code)->get();
         $user;
@@ -73,8 +77,6 @@ class TransactionController extends Controller
             $user = Student::where('nis', $form->user_number)->get();
         } else if ($form->user === 'teacher') {
             $user = Teacher::where('nip', $form->user_number)->get();
-        } else {
-            abort(404);
         }
         if (count($book) === 0) {
             session()->flash('error', 'Book not found');
@@ -88,13 +90,13 @@ class TransactionController extends Controller
         $transaction->book_code = $form->book_code;
         if ($form->user === 'student') {
             $transaction->user_type = 'student';
-            $transaction->student_nis = $form->student_nis;
-        }
-        else if ($form->user === 'teacher') {
+            $transaction->student_nis = $form->user_number;
+        } else if ($form->user === 'teacher') {
             $transaction->user_type = 'teacher';
-            $transaction->teacher_nip = $form->teacher_nip;
+            $transaction->teacher_nip = $form->user_number;
         }
         $transaction->status = 'borrowed';
+        $transaction->admin_id = $admin;
         $transaction->save();
 
         $detail = new Detail;
@@ -111,7 +113,8 @@ class TransactionController extends Controller
         return redirect()->route('transaction');
     }
 
-    public function update(UpdateTransactionRequest $request, $id) {
+    public function update(UpdateTransactionRequest $request, $id)
+    {
         $transaction = Transaction::find($id);
         $detail = $transaction->detail;
         if ($request->return_date && !$detail->return_date) {
@@ -145,7 +148,8 @@ class TransactionController extends Controller
         return redirect()->route('transaction');
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $transaction = Transaction::find($id);
         if (!$transaction) {
             abort(404);
@@ -163,5 +167,4 @@ class TransactionController extends Controller
 
         return redirect()->route('transaction');
     }
-
 }
