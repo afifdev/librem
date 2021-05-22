@@ -40,9 +40,10 @@ class BookController extends Controller
     }
 
     // [VIEW/GET] localhost:8000/admin/books/:id
-    public function detail()
+    public function detail($id)
     {
-        return view('auth.admin.book.detail');
+        $book = Book::find($id);
+        return view('auth.admin.book.show', compact('book'));
     }
 
     // [VIEW/GET] localhost:8000/admin/books/:id/edit
@@ -130,7 +131,6 @@ class BookController extends Controller
     public function update(UpdateBookRequest $request, Book $book)
     {
         $attr = $request->all();
-
         $image = request()->file('image');
         if (isset($image)) {
             $imageTitle = \Str::slug($request->title);

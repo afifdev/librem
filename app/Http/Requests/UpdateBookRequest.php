@@ -32,7 +32,6 @@ class UpdateBookRequest extends FormRequest
             'title' => 'required|max:255',
             'description' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
-            'availability' => 'required|numeric|min:0|max:1',
             'isbn' => 'required',
         ];
     }
