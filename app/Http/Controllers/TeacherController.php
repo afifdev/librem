@@ -24,7 +24,6 @@ class TeacherController extends Controller
     // [VIEW/GET] localhost:8000/admin/teacher/register
     public function register()
     {
-
         return view('auth.admin.teacher.register');
     }
 

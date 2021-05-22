@@ -1,7 +1,7 @@
 <div class="route-admin-navbar sticky-top">
     <nav class="navbar navbar-dark ">
         <span class="librem">Librem</span>
-        <span class="halo">Halo, selamat datang {{ auth()->guard('admin')->user()->name }}</span>
+        {{-- <span class="halo">Halo, selamat datang {{ auth()->guard('admin')->user()->name }}</span> --}}
     </nav>
 </div>
 <div class="route-admin-sidenav">
