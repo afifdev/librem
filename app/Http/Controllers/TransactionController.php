@@ -11,14 +11,7 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = DB::table('transactions')
-            ->join('books', 'transactions.book_code', '=', 'books.code')
-            ->join('students', 'transactions.student_nis', '=', 'students.nis')
-            ->join('teachers', 'transactions.teacher_nip', '=', 'teachers.nip')
-            ->join('admins', 'transactions.admin_id', '=', 'admins.id')
-            ->select('transactions.*', 'books.title', 'students.name as student_name', 'teachers.name as teacher_name', 'admins.name as admin_name')
-            ->get();
-        dd($transactions);
+        $transactions = Transaction::all();
         return view('auth.admin.transaction.index', compact('transactions'));
     }
 

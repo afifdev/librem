@@ -45,10 +45,10 @@
                 <div class="col-auto py-2">
                     <select name="search_by" class="form-select">
                         <option value="all">Search By</option>
-                        <option value="code">code</option>
-                        <option value="title">title</option>
-                        <option value="writer">writer</option>
-                        <option value="isbn">isbn</option>
+                        <option value="code">Kode</option>
+                        <option value="title">Judul</option>
+                        <option value="writer">Penulis</option>
+                        <option value="isbn">ISBN</option>
                     </select>
                 </div>
             </div>
@@ -58,8 +58,8 @@
                 <div class="col-auto py-2">
                     <select name="availability" class="form-select">
                         <option value="all">Status buku . . .</option>
-                        <option value="tersedia">tersedia</option>
-                        <option value="terpinjam">terpinjam</option>
+                        <option value="tersedia">Tersedia</option>
+                        <option value="terpinjam">Terpinjam</option>
                     </select>
                 </div>
                 @if ($kind === 'courses')
@@ -104,7 +104,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Buku</th>
+                        <th>Judul Buku</th>
                         <th>Kode</th>
                         <th>Penulis</th>
                         <th>Kategori</th>

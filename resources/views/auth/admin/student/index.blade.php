@@ -2,62 +2,73 @@
 @section('header')
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
-
-
 @section('content')
 <div class="container" style="margin-left: 40vh">
-
-    <div class="mem-new">
-        <p><i class="fas fa-user-friends"></i>Teacher</p>
+    @if(session()->has('success'))
+    <p> {{ session()->get('success') }}</p>
+    @endif
+    <div class="mem-new py-4">
+        <p>Student</p>
         <form action="{{route('student_search') }}" method="POST">
             @csrf
-            <input name="search" type="search" id="form1" class="form-control" placeholder="Search for Teachers ..."
-                aria-label="Search" />
-            <button type="submit" class="btn btn-primary">Search for Name</button>
-            <br><br>
+            <div class="row">
+                <div class="col-10">
+                    <input name="search" type="search" id="form1" class="form-control"
+                        placeholder="Search for students ..." aria-label="Search" />
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
         </form>
     </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>NO</th>
-                <th>NIS</th>
-                <th>NAME</th>
-                <th>TAHUN MASUK</th>
-                <th>KELAS</th>
-                <th>STATUS</th>
-                <th colspan="2">AKSI</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @forelse ($students as $student)
-            <tr>
-                <td>{{ $loop->index+1 }}</td>
-                <td>{{ $student->nis }}</td>
-                <td>{{ $student->name }}</td>
-                <td>{{ $student->start_year }}</td>
-                <td>{{ $student->grade->level.' '.$student->major->name.' '.$student->major->level }}</td>
-                <td>{{ $student->graduated ? 'Lulus':'Aktif' }}</td>
-                <td>
-                    <a href="{{ route('student_edit', $student->nis) }}">Edit</a>
-                </td>
-                <td>
-                    <form action="{{ route('student_delete', $student->nis) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @empty
-            Tidak ada
-            @endforelse
-        </tbody>
-    </table>
-    {{ $students->links() }}
-    <a href="{{ route('student_register') }}">Tambah Data Siswa</a>
+    <a href="{{ route('student_register') }}" class="btn bg-primary text-light">Tambah Data Siswa</a>
+    <div class="table-responsive py-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>NIS</th>
+                    <th>Nama</th>
+                    <th>Tahun Masuk</th>
+                    <th>Kelas</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($students as $student)
+                <tr>
+                    <th class="align-middle" scope="row">{{ $loop->index+1 }}</th>
+                    <td class="align-middle">{{ $student->nis }}</td>
+                    <td class="align-middle">{{ $student->name }}</td>
+                    <td class="align-middle">{{ $student->start_year }}</td>
+                    <td class="align-middle">
+                        {{ $student->grade->level.' '.$student->major->name.' '.$student->major->level }}</td>
+                    <td class="align-middle">{{ $student->graduated ? 'Lulus':'Aktif' }}</td>
+                    <td class="align-middle">
+                        <a href="{{ route('student_edit', $student->nis) }}" class="btn btn-success">Edit</a>
+                    </td>
+                    <td class="align-middle">
+                        <form action="{{ route('student_delete', $student->nis) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                Tidak ada
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ $students->links() }}
+    </div>
+    <div class="py-4">
+    </div>
 </div>
 
 @endsection

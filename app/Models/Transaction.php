@@ -24,6 +24,6 @@ class Transaction extends Model
         return $this->hasOne(Detail::class);
     }
     public function admin() {
-        return $this->hasOne(Admin::class);
+        return $this->belongsTo(Admin::class);
     }
 }

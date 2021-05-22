@@ -73,6 +73,7 @@ class LoginController extends Controller
             // dd(auth()->guard('admin')->check());
             return redirect()->intended('/admin');
         }
+        // dd(1);
         return back()->withInput($request->only('username', 'remember'));
     }
 
