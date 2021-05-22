@@ -30,7 +30,7 @@
         @forelse ($categories as $category)
         <option value="{{ $category->id }}">{{ $category->name }}</option>
         @empty
-        <option value="" hidden>Kosong</option>
+        <option value="kosong" hidden>Kosong</option>
         @endforelse
     </select>
     <input type="text" name="custom_category" placeholder="Kategori Lain">
@@ -44,7 +44,7 @@
         @forelse ($writers as $writer)
         <option value="{{ $writer->id }}">{{ $writer->name }}</option>
         @empty
-        <option value="" hidden>Kosong</option>
+        <option value="kosong" hidden>Kosong</option>
         @endforelse
     </select>
     <input type="text" name="custom_writer" placeholder="Writer Lain">

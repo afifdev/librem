@@ -1,10 +1,11 @@
 <div class="route-home-navigation">
     <nav class="navbar fixed-top navbar-expand-lg navbar-light custom-nav">
         <div class="container-fluid">
-            @if (auth()->guard('teacher')->check() or auth()->guard('student')->check())
-            <a class="align-self-center justify-content-center cta" href="{{ route('login') }}">Login</a>
+            @if (auth()->guard('teacher')->check() or auth()->guard('student')->check() or
+            auth()->guard('admin')->check())
+            <h2 style="padding: 0 0 0 2rem;">Librem</h2>
             @else
-            <h2>Librem</h2>
+            <a class="align-self-center justify-content-center cta" href="{{ route('login') }}">Login</a>
             @endif
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

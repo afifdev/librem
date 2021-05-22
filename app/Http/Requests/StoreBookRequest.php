@@ -34,17 +34,27 @@ class StoreBookRequest extends FormRequest
         $publishers = Publisher::all();
         $grades = Grade::all();
 
-        if (request()->publisher_id == 'tambah') {
+        if (request()->publisher_id === 'tambah') {
             $validation_publisher = 'required';
         } else {
             $validation_publisher = '';
+        }
+        if (request()->category_id !== 'kosong') {
+            $validation_category_id = 'required';
+        } else {
+            $validation_category_id = '';
+        }
+        if (request()->writer_id !== 'kosong') {
+            $validation_writer_id = 'required';
+        } else {
+            $validation_writer_id = '';
         }
 
         return [
             'code' => 'required|unique:books,code',
             'kind_id' => 'required',
-            'category_id' => 'required',
-            'writer_id' => 'required',
+            'category_id' => $validation_category_id,
+            'writer_id' => $validation_writer_id,
             'publisher_id' => 'required',
             'title' => 'required|max:255',
             'description' => 'required',

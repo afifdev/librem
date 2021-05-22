@@ -86,8 +86,14 @@ class TransactionController extends Controller
         }
         $transaction = new Transaction;
         $transaction->book_code = $form->book_code;
-        $transaction->student_nis = $form->student_nis;
-        $transaction->teacher_nip = $form->teacher_nip;
+        if ($form->user === 'student') {
+            $transaction->user_type = 'student';
+            $transaction->student_nis = $form->student_nis;
+        }
+        else if ($form->user === 'teacher') {
+            $transaction->user_type = 'teacher';
+            $transaction->teacher_nip = $form->teacher_nip;
+        }
         $transaction->status = 'borrowed';
         $transaction->save();
 

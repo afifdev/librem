@@ -67,18 +67,9 @@
     <span class="text-danger">{{ $errors->first('phone_number') }}</span>
     @endif
     <br>
-
-    <label for="start_year">Tahun Masuk:</label>
-    <select name="start_year">
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-    </select>
     @if ($errors->has('start_year'))
     <span class="text-danger">{{ $errors->first('start_year') }}</span>
     @endif
-    <br>
-
     <label for="grade_id">Kelas:</label>
     <select name="grade_id">
         @forelse ($grades as $grade)

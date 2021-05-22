@@ -17,13 +17,13 @@
             @foreach ($rules as $rule)
             <li>{{$rule}}</li>
             @endforeach
-            {{-- <li>Layanan peminjaman offline buku tersedia pada saat jam kerja</li>
-                <li>Dilarang makan dan minum di perpustakaan</li>
-                <li>Dilarang berbuat gaduh di perpustakaan</li>
-                <li>Batas waktu pengembalian buku untuk siswa adalah 3 hari</li>
-                <li>Pengembalian yang melebihi batas waktu akan dikenakan denda 1000/hari</li>
-                <li>Peminjam buku diharapkan menjaga buku dengan baik</li>
-                <li>Peminjam buku kan dikenakan sanksi atas kerusakan dan kehilangan buku</li> --}}
+            <li>Layanan peminjaman offline buku tersedia pada saat jam kerja</li>
+            <li>Dilarang makan dan minum di perpustakaan</li>
+            <li>Dilarang berbuat gaduh di perpustakaan</li>
+            <li>Batas waktu pengembalian buku untuk siswa adalah 3 hari</li>
+            <li>Pengembalian yang melebihi batas waktu akan dikenakan denda 1000/hari</li>
+            <li>Peminjam buku diharapkan menjaga buku dengan baik</li>
+            <li>Peminjam buku kan dikenakan sanksi atas kerusakan dan kehilangan buku</li>
         </ul>
     </div>
     <footer class="background d-flex justify-content-around">

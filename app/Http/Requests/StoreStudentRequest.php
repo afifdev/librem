@@ -24,18 +24,16 @@ class StoreStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'nis' => 'required|unique:teachers,nip',
+            'nis' => 'required|unique:students,nis|min:6',
             'password' => 'required|confirmed|min:6',
             'name' => 'required',
             'gender' => 'required|max:1|min:0',
-            'born_date' => 'required',
+            'born_date' => 'required|before:today',
             'born_place' => 'required',
             'address' => 'required',
             'phone_number' => 'required',
-            'start_year' => 'required', //Nanti buat validasi rentang tahun yang ada di model
             'grade_id' => 'required',
             'major_id' => 'required',
-            'graduated' => 'required',
         ];
     }
 }

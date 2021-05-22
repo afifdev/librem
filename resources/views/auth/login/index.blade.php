@@ -18,7 +18,7 @@
             <hr size="10px" width="60px">
             <p>SMA Pelita Nusa</p>
             <div class="but">
-                <a href="index.html">
+                <a href="{{route('homepage')}}">
                     <span></span>
                     <span></span>
                     <span></span>

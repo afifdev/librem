@@ -24,15 +24,13 @@ class UpdateStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'nis' => 'required|unique:students,nis,' . $this->student->nis . ',nis',
-            'password' => 'required|confirmed|min:6',
+            'currentpwd' => 'required',
             'name' => 'required',
             'gender' => 'required|max:1|min:0',
             'born_date' => 'required',
             'born_place' => 'required',
             'address' => 'required',
             'phone_number' => 'required',
-            'start_year' => 'required', //Nanti buat validasi rentang tahun yang ada di model
             'grade_id' => 'required',
             'major_id' => 'required',
             'graduated' => 'required',

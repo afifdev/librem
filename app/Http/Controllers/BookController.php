@@ -103,10 +103,24 @@ class BookController extends Controller
         $image = request()->file('image');
         $imageUrl = $image->storeAs("images/books", "{$imageTitle}.{$image->extension()}");
         $attr['image'] = $imageUrl;
+        // dd($attr);
 
-        Book::create($attr);
+        $book = new Book;
+        $book->code = $attr['code'];
+        $book->kind_id = $attr['kind_id'];
+        $book->category_id = $attr['category_id'];
+        $book->publisher_id = $attr['publisher_id'];
+        $book->grade_id = $attr['grade_id'];
+        $book->title = $attr['title'];
+        $book->description = $attr['description'];
+        $book->image = $attr['image'];
+        $book->availability = 1;
+        $book->writer_id = $attr['writer_id'];
+        $book->isbn = $attr['isbn'];
+        $book->save();
+        // Book::create($attr);
 
-        return redirect()->route('bookRegister')
+        return redirect()->route('book')
             ->with('success', 'Buku Berhasil Ditambahkan');
     }
 

@@ -34,7 +34,8 @@
         <div class="sidebar">
             <div class="link-sidebar">
                 <ul>
-                    <li><a href="{{route('student')}}"><span class="las la-users"></span>Users</a></li>
+                    <li><a href="{{route('student')}}"><span class="las la-users"></span>Student</a></li>
+                    <li><a href="{{route('teacher')}}"><span class="las la-users"></span>Teacher</a></li>
                     <li><a href="{{route('book')}}"><span class="las la-book-reader"></span>Books</a></li>
                     <li><a href="{{route('transaction')}}"><span class="las la-address-book"></span>Transactions</a>
                     </li>
@@ -85,13 +86,8 @@
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->start_year }}</td>
                             <td>{{ $student->grade->level.' '.$student->major->name.' '. $student->major->level}}</td>
-                            <td>{{ $student->graduated }}</td>
-                            <td colspan="2" class="col">
-                                <a href="ubahStudent.html" class="edit"><i class="fas fa-edit"></i></a>
-                                {{-- <form action="{{ route('student_delete', $student->id) }}" method="post">
-                                <button type="submit" class="del"><i class="fas fa-trash-alt p-2"></i></button>
-                                </form> --}}
-                            </td>
+                            <td>{{ $student->graduated ? 'Lulus' : 'Aktif' }}</td>
+                            <td><a href="{{route('student_edit', $student->nis)}}">Edit</a></td>
                         </tr>
                         @empty
                         Tidak ada data
