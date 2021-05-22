@@ -45,11 +45,12 @@
             <label for="" class="form-label">Deskripsi</label>
             <p class="form-control">{{$book->description}}</p>
         </div>
-        {{-- <div class="col-md-4">
-            <label for="" class="form-label">Gambar/Foto</label> --}}
-        <p class="form-control"><img src="{{Storage::url($book->image)}}" alt="">
-        </p>
-        {{-- </div> --}}
+        <div class="col-md-4">
+            <label for="" class="form-label">Gambar/Foto</label>
+            <p class="form-control"><img src="{{asset("storage/".$book->image)}}" alt=""
+                    style="width: 20rem; height:auto;">
+            </p>
+        </div>
     </div>
 </div>
 @endsection
