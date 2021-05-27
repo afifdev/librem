@@ -3,6 +3,7 @@
 @section('header')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+<title>{{$user[0]->user_name}}</title>
 <link rel="stylesheet" href="{{asset('css/profile.css')}}">
 <link rel="stylesheet" href="{{asset('css/navigation.css')}}">
 @endsection
@@ -25,16 +26,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($user as $s)
                         <tr>
-                            <th>Algoritma Pemrograman</th>
-                            <td>Pak doni</td>
-                            <td>20-03-21</td>
-                            <td>23-03-21</td>
-                            <td>27-03-21</td>
-                            <td>10.000</td>
-                            <td>10.000</td>
-                            <td>Lunas</td>
+                            <td>{{$s->title}}</td>
+                            <td>{{$s->admin_name}}</td>
+                            <td>{{$s->take_date}}</td>
+                            <td>{{$s->due_date}}</td>
+                            <td>{{$s->return_date}}</td>
+                            <td>{{$s->penalty ? $s->penalty : '-'}}</td>
+                            <td>{{$s->debt_collected ? $s->debt_collected : '-'}}</td>
+                            @if ($s->status === 'borrowed')
+                            <td>Dipinjam</td>
+                            @elseif ($s->status === 'debt')
+                            <td>Belum lunas</td>
+                            @else
+                            <td>Selesai</td>
+                            @endif
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -44,7 +53,15 @@
             <div class="col-md-3">
                 <div class="custom-box">
                     <h5>Total Denda</h5>
-                    <h2>10.000</h2>
+                    @php
+                    $total = 0;
+                    @endphp
+                    @foreach ($user as $s)
+                    @php
+                    $total += $s->penalty - $s->debt_collected
+                    @endphp
+                    @endforeach
+                    <p class="text-light fs-4">Rp {{$total}},00</p>
                 </div>
             </div>
         </div>

@@ -11,7 +11,9 @@ class Student extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
-
+    protected $casts = [
+        'nis' => 'string'
+    ];
     protected $guard = 'students';
     protected $fillable = [
         'nis', 'password', 'name', 'gender', 'born_date', 'born_place', 'address', 'phone_number', 'start_year', 'grade_id', 'major_id'

@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('header')
+<title>Edit Siswa</title>
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
 @section('content')
@@ -10,15 +11,15 @@
         @method('patch')
         <div class="row g-3">
             <div class="col-md-4">
-                <label for="currentpwd" class="form-label">Current Password</label>
+                <label for="currentpwd" class="form-label">Password Sekarang</label>
                 <input type="text" name="currentpwd" class="form-control">
             </div>
             <div class="col-md-4">
-                <label for="password" class="form-label">Password (opsional)</label>
+                <label for="password" class="form-label">Password Baru (opsional)</label>
                 <input type="text" name="password" class="form-control">
             </div>
             <div class="col-md-4">
-                <label for="password_confirmation" class="form-label">Confirmation Password (opsional)</label>
+                <label for="password_confirmation" class="form-label">Konfirmasi Password (opsional)</label>
                 <input type="text" name="password_confirmation" class="form-control">
             </div>
             <div class="col-md-4">

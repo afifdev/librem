@@ -9,6 +9,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/books/{kind}', [HomeController::class, 'show'])->name('show_books');
 Route::post('/books/{kind}', [HomeController::class, 'handleSearch'])->name('search_books');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/rule', [HomeController::class, 'rule'])->name('home-rule');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/login', [LoginController::class, 'viewLogin'])->name('login');
@@ -58,14 +59,4 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/rule', [RuleController::class, 'index'])->name('rule');
     Route::post('/admin/rule', [RuleController::class, 'create'])->name('rule_register');
     Route::put('/admin/rule/{id}', [RuleController::class, 'updateAndDelete'])->name('rule_update');
-});
-
-// If Login as Student
-Route::group(['middleware' => 'auth:student'], function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-});
-
-// // If Login as Teacher
-Route::group(['middleware' => 'auth:teacher'], function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });

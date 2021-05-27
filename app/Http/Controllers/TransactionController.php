@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\{Transaction, Book, Teacher, Student, Detail, Admin};
 use App\Http\Requests\{StoreTransactionRequest, UpdateTransactionRequest};
+use Illuminate\Pagination\simplePaginate;
 
 class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::all();
+        $transactions = Transaction::simplePaginate(20);
         return view('auth.admin.transaction.index', compact('transactions'));
     }
 
     public function search()
     {
         $id = request()->search;
-        $transactions = Transaction::where('id','like','%'.$id.'%')->get();
+        $transactions = Transaction::where('id','like','%'.$id.'%')->simplePaginate(20);
         return view('auth.admin.transaction.index', compact('transactions'));
     }
     public function register()
@@ -46,7 +47,7 @@ class TransactionController extends Controller
         } else if ($form->user === 'teacher') {
             $user = Teacher::where('nip', $form->user_number)->get();
         }
-        if (count($book) === 0) {
+        if (count($book) === 0 || $book[0]->availability === 0) {
             session()->flash('error', 'Book not found');
             return redirect()->back();
         }
@@ -84,6 +85,9 @@ class TransactionController extends Controller
     public function update(UpdateTransactionRequest $request, $id)
     {
         $transaction = Transaction::find($id);
+        if (!$transaction) {
+            return redirect('transaction');
+        }
         $detail = $transaction->detail;
         if ($request->return_date && !$detail->return_date) {
             $due_date = date_create($detail->due_date);

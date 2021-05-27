@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('header')
+<title>Detail Buku</title>
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
 @section('content')
@@ -39,7 +40,7 @@
         </div>
         <div class="col-md-4">
             <label for="" class="form-label">Ketersediaan</label>
-            <p class="form-control">{{$book->availability ? 'Tersedia' : 'Dipinjam'}}</p>
+            <p class="form-control">{{$book->availability ? 'Tersedia' : 'Terpinjam'}}</p>
         </div>
         <div class="col-md-4">
             <label for="" class="form-label">Deskripsi</label>

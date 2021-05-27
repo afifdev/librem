@@ -18,6 +18,7 @@ class CreatePublishersTable extends Migration
             $table->string('name');
             $table->string('year');
             $table->string('city');
+            $table->timestamps();
         });
     }
 

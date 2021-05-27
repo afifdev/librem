@@ -12,6 +12,9 @@ class Teacher extends Authenticatable
     use HasFactory;
     use Notifiable;
 
+    protected $casts = [
+        'nip' => 'string'
+    ];
     protected $guard = 'teachers';
     protected $fillable = [
         'nip', 'password', 'name', 'gender', 'born_date', 'born_place', 'address', 'phone'

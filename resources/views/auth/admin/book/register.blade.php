@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('header')
+<title>Tambah Buku</title>
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
 @section('content')

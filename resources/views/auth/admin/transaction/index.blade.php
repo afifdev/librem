@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('header')
+<title>Transaksi</title>
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
 @section('content')
@@ -40,12 +41,12 @@
             <table class="table table-striped">
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Transaction Code</th>
-                    <th scope="col">Book</th>
-                    <th scope="col">User</th>
-                    <th scope="col">Librarian</th>
+                    <th scope="col">Kode Transaksi</th>
+                    <th scope="col">Buku</th>
+                    <th scope="col">Peminjam</th>
+                    <th scope="col">Pustakawan</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Aksi</th>
                 </tr>
                 @foreach ($transactions as $transaction)
                 <tr>
@@ -57,7 +58,8 @@
                         {{$transaction->student ? $transaction->student->name:$transaction->teacher->name}}</td>
                     <td class="align-middle">{{$transaction->admin->name}}</td>
                     <td class="align-middle">{{$transaction->status}}</td>
-                    <td class="align-middle"><a href="{{route('trans_show', ['id' => $transaction->id])}}">view</a></td>
+                    <td class="align-middle"><a href="{{route('trans_show', ['id' => $transaction->id])}}"
+                            class="btn bg-primary text-light">view</a></td>
                 </tr>
                 @endforeach
             </table>

@@ -14,29 +14,24 @@ use Illuminate\Pagination\simplePaginate;
 
 class TeacherController extends Controller
 {
-    // [VIEW/GET] localhost:8000/admin/teacher
     public function index()
     {
         $teachers = Teacher::simplePaginate(10);
         return view('auth.admin.teacher.index', compact('teachers'));
     }
 
-    // [VIEW/GET] localhost:8000/admin/teacher/register
     public function register()
     {
         return view('auth.admin.teacher.register');
     }
 
-    // [VIEW/GET] localhost:8000/admin/teacher/:id
     public function detail()
     {
         return view('auth.admin.teacher.detail');
     }
 
-    // [VIEW/GET] localhost:8000/admin/teacher/:id/edit
     public function edit($nip)
     {
-        // Check if url false
         $get_teacher_id = Teacher::where('nip', $nip)->get();
         if ($get_teacher_id->isEmpty()) {
             abort(404);

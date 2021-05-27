@@ -12,26 +12,26 @@ class ProfileController extends Controller
     {
         if (auth()->guard('student')->check()) {
             $nis = auth()->guard('student')->user()->nis;
-            $user = DB::table('students')->where('students.nis', '=', $nis)
-                ->join('transactions', 'transactions.student_nis', '=', 'students.nis')
+            $user = DB::table('students')->whereRaw('cast(students.nis AS BIGINT)='.$nis)
+                ->join('transactions', 'transactions.student_nis', '=', DB::raw('cast(students.nis AS BIGINT)'))
                 ->join('details', 'details.transaction_id', '=', 'transactions.id')
+                ->join('admins', 'admins.id','=','transactions.admin_id')
                 ->join('books', 'books.code', '=', 'transactions.book_code')
-                ->select('students.name as user_name', 'students.nis as user_number', 'books.title as title', 'transactions.status as status', 'details.take_date as take_date', 'details.due_date as due_date', 'details.return_date as return_date', 'details.penalty as penalty', 'details.debt_collected as debt_collected')
+                ->select('students.name as user_name', 'students.nis as user_number', 'books.title as title', 'transactions.status as status', 'admins.name as admin_name', 'details.take_date as take_date', 'details.due_date as due_date', 'details.return_date as return_date', 'details.penalty as penalty', 'details.debt_collected as debt_collected')
                 ->get();
             return view('auth.profile', compact('user'));
         } else if (auth()->guard('teacher')->check()) {
             $nip = auth()->guard('teacher')->user()->nip;
-            $user = DB::table('teachers')->where('teachers.nip', '=', $nip)
-                ->join('transactions', 'transactions.student_nis', '=', 'teachers.nip')
+            $user = DB::table('teachers')->whereRaw('cast(teachers.nip AS TEXT)='.$nip)
+                ->join('transactions', 'transactions.teacher_nip', '=', DB::raw('cast(teachers.nip AS BIGINT)'))
+                ->join('admins', 'admins.id','=','transactions.admin_id')
                 ->join('details', 'details.transaction_id', '=', 'transactions.id')
                 ->join('books', 'books.code', '=', 'transactions.book_code')
-                ->select('teachers.name as user_name', 'teachers.nip as user_number', 'books.title as title', 'transactions.status as status', 'details.take_date as take_date', 'details.due_date as due_date', 'details.return_date as return_date', 'details.penalty as penalty', 'details.debt_collected as debt_collected')
+                ->select('teachers.name as user_name', 'teachers.nip as user_number', 'books.title as title', 'transactions.status as status', 'admins.name as admin_name', 'details.take_date as take_date', 'details.due_date as due_date', 'details.return_date as return_date', 'details.penalty as penalty', 'details.debt_collected as debt_collected')
                 ->get();
             return view('auth.profile', compact('user'));
-        } else {
-            return redirect('/');
         }
-        return view('auth.profile', ['user' => '']);
+        return redirect('/');
         // abort(403);
     }
 }

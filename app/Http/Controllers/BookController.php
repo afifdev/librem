@@ -18,14 +18,12 @@ use Illuminate\Pagination\simplePaginate;
 
 class BookController extends Controller
 {
-    // [VIEW/GET] localhost:8000/admin/books
     public function index()
     {
-        $books = Book::simplePaginate(10);
+        $books = Book::simplePaginate(20);
         return view('auth.admin.book.index', compact('books'));
     }
 
-    // [VIEW/GET] localhost:8000/admin/books/register
     public function register()
     {
         $books = Book::all();
@@ -39,17 +37,17 @@ class BookController extends Controller
         return view('auth.admin.book.register', compact('books', 'kinds', 'categories', 'writers', 'publishers', 'grades'));
     }
 
-    // [VIEW/GET] localhost:8000/admin/books/:id
     public function detail($id)
     {
         $book = Book::find($id);
+        if (!$book) {
+            abort(404);
+        }
         return view('auth.admin.book.show', compact('book'));
     }
 
-    // [VIEW/GET] localhost:8000/admin/books/:id/edit
     public function edit($id)
     {
-        // Check if url false
         $get_book_id = Book::where('id', $id)->get();
         if ($get_book_id->isEmpty()) {
             abort(404);
@@ -161,9 +159,9 @@ class BookController extends Controller
     {
         $form = request();
         if (isset($form->search)) {
-            $books = Book::where('title', 'like', '%' . $form->search . '%')->simplePaginate(10);
+            $books = Book::where('title', 'like', '%' . $form->search . '%')->simplePaginate(20);
         } else {
-            $books = Book::simplePaginate(10);
+            $books = Book::simplePaginate(20);
         }
         return view('auth.admin.book.index', compact('books'));
     }

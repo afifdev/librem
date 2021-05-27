@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('header')
+<title>Detail Transaksi</title>
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
 @section('content')
@@ -14,7 +15,7 @@
                     <p class="form-control" readonly>{{$transaction->book_code}}</p>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">User Number</label>
+                    <label class="form-label">Nomer User</label>
                     <p class="form-control" readonly>
                         {{$transaction->student ? $transaction->student->nis:$transaction->teacher->nip}}</p>
                 </div>
@@ -23,15 +24,15 @@
                     <p class="form-control" readonly>{{$transaction->detail->type}}</p>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">Take Date</label>
+                    <label class="form-label">Tanggal Pinjam</label>
                     <p class="form-control" readonly>{{$transaction->detail->take_date}}</p>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">Due Date</label>
+                    <label class="form-label">Tenggat Waktu</label>
                     <p class="form-control" readonly>{{$transaction->detail->due_date}}</p>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label" for="return_date">Return date</label>
+                    <label class="form-label" for="return_date">Tanggal Kembali</label>
                     @if (!$transaction->detail->return_date)
                     <input type="date" name="return_date" class="form-control">
                     @else
@@ -39,7 +40,7 @@
                     @endif
                 </div>
                 <div class="col-md-4">
-                    <p class="form-label">Penalty</p>
+                    <p class="form-label">Denda</p>
                     @if(!$transaction->detail->penalty)
                     <p class="form-control" readonly>0</p>
                     @else

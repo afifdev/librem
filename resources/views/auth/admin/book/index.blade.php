@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('header')
+<title>Buku</title>
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
 @section('content')
@@ -28,14 +29,14 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Kind</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Writer</th>
-                    <th scope="col">Publisher</th>
-                    <th scope="col">Grade</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Availability</th>
+                    <th scope="col">Kode</th>
+                    <th scope="col">Jenis</th>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Penulis</th>
+                    <th scope="col">Penerbit</th>
+                    <th scope="col">Kelas</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Ketersediaan</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Detail</th>
                     <th scope="col">Update</th>
@@ -57,7 +58,7 @@
                     <td class="align-middle"> - </td>
                     @endif
                     <td class="align-middle">{{ $book->title }}</td>
-                    <td class="align-middle">{{ $book->availability }}</td>
+                    <td class="align-middle">{{ $book->availability ? 'Tersedia' : 'Terpinjam' }}</td>
                     <td class="align-middle">{{ $book->isbn }}</td>
                     <td class="align-middle"><a href="{{route('book_detail', $book->id)}}"
                             class="btn bg-primary text-light">Detail</a></td>

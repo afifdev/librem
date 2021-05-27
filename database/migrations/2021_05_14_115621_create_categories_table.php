@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->foreignId('kind_id');
             $table->string('name');
+            $table->timestamps();
         });
     }
 

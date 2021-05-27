@@ -5,6 +5,7 @@
 @section('header')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+<title>{{$kind}}</title>
 <link rel="stylesheet" href="{{ asset('css/navigation.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/show.css') }}" />
 @endsection
@@ -129,7 +130,7 @@
                         <td>{{$book->grade}}</td>
                         @endif
                         <td>{{$book->isbn}}</td>
-                        <td>{{$book->availability === 1 ? 'tersedia' : 'terpinjam'}}</td>
+                        <td>{{$book->availability ? 'tersedia' : 'terpinjam'}}</td>
                     </tr>
                     @endforeach
                     {{-- <tr>

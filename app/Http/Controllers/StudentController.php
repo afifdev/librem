@@ -16,7 +16,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::simplePaginate(10);
+        $students = Student::simplePaginate(20);
         return view('auth.admin.student.index', compact('students'));
     }
 
@@ -30,6 +30,9 @@ class StudentController extends Controller
     public function detail($nis)
     {
         $student = Student::where('nis', $nis)->get();
+        if ($student->iseEmpty()) {
+            abort(404);
+        }
         $student = $student[0];
         return view('auth.admin.student.detail', compact('student'));
     }
@@ -64,10 +67,10 @@ class StudentController extends Controller
         $grade = Grade::find($request->grade_id);
         $major = Major::find($request->major_id);
         if (!Hash::check($request->currentpwd, $student->password)) {
-            dd($request->currentpwd);
+            return redirect()->back();
         }
         if (!$grade || !$major) {
-            abort(403);
+            return redirect()->back();
         }
         $attr = $request->all();
         if (!$request->password && !$request->password_confirmation) {
@@ -95,9 +98,9 @@ class StudentController extends Controller
     {
         $form = request();
         if ($form->search) {
-            $students = Student::where('name', 'like', '%' . $form->search . '%')->simplePaginate(10);
+            $students = Student::where('name', 'like', '%' . $form->search . '%')->simplePaginate(20);
         } else {
-            $students = Student::simplePaginate(10);
+            $students = Student::simplePaginate(20);
         }
         return view('auth.admin.student.index', compact('students'));
     }
