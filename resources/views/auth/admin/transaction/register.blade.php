@@ -16,10 +16,20 @@
             <div class="col-md-12">
                 <label for="book_code" class="form-label">Kode Buku</label>
                 <input type="text" name="book_code" id="book_code" class="form-control">
+                @error('book_code')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-6">
                 <label for="user_number" class="form-label">Kode User</label>
                 <input type="number" name="user_number" class="form-control">
+                @error('user_number')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-6">
                 <label for="user" class="form-label">Pilih User</label>
@@ -27,6 +37,11 @@
                     <option value="student">Siswa</option>
                     <option value="teacher">Guru</option>
                 </select>
+                @error('user')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-6">
                 <label for="type" class="form-label">Tipe</label>
@@ -34,14 +49,29 @@
                     <option value="paket">paket</option>
                     <option value="reguler">reguler</option>
                 </select>
+                @error('type')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-6">
                 <label for="due_date" class="form-label">Tenggat waktu</label>
                 <input type="date" name="due_date" class="form-control">
+                @error('due_date')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-12">
                 <label for="detail" class="form-label">Detail</label>
                 <input type="text" name="detail" class="form-control">
+                @error('detail')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-success">Submit</button>

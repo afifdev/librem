@@ -2,6 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Grade;
+use App\Models\Major;
+use App\Rules\WrongPass;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateStudentRequest extends FormRequest
@@ -21,18 +25,30 @@ class UpdateStudentRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
+        $grade = Grade::find(request()->grade_id);
+        $major = Major::find(request()->major_id);
+        $wrongPass = '';
+        if (!Hash::check(request()->currentpwd, $this->student->password)) {
+            $wrongPass = new WrongPass;
+        }
+        $class = '';
+        if (!$grade || !$major) {
+            $class = 'required';
+        }
+
         return [
-            'currentpwd' => 'required',
+            'currentpwd' => ['required', $wrongPass],
             'password' => 'confirmed',
             'gender' => 'required|max:1|min:0',
             'born_date' => 'required',
             'born_place' => 'required',
             'address' => 'required',
             'phone_number' => 'required',
-            'grade_id' => 'required',
-            'major_id' => 'required',
+            'grade_id' => $class,
+            'major_id' => $class,
             'graduated' => 'required',
         ];
     }

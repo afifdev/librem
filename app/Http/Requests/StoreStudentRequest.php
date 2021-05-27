@@ -16,6 +16,15 @@ class StoreStudentRequest extends FormRequest
         return true;
     }
 
+    // Custom Message
+    public function messages()
+    {
+        return [
+            'grade_id.required' => 'The class field is required. ',
+            'major_id.required' => 'The major field is required. ',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,16 +33,16 @@ class StoreStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'nis' => 'required|unique:students,nis|min:6',
+            'nis' => 'required|unique:students,nis',
             'password' => 'required|confirmed|min:6',
             'name' => 'required',
             'gender' => 'required|max:1|min:0',
             'born_date' => 'required|before:today',
             'born_place' => 'required',
-            'address' => 'required',
-            'phone_number' => 'required',
+            'phone_number' => 'required|numeric',
             'grade_id' => 'required',
             'major_id' => 'required',
+            'address' => 'required',
         ];
     }
 }

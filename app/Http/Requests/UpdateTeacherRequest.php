@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\WrongPass;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UpdateTeacherRequest extends FormRequest
 {
@@ -23,8 +25,12 @@ class UpdateTeacherRequest extends FormRequest
      */
     public function rules()
     {
+        $wrongPass = '';
+        if (!Hash::check(request()->currentpwd, $this->teacher->password)) {
+            $wrongPass = new WrongPass;
+        }
         return [
-            'currentpwd' => 'required',
+            'currentpwd' => ['required', $wrongPass],
             'password' => 'confirmed',
             'name' => 'required',
             'gender' => 'required|max:1|min:0',

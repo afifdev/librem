@@ -52,9 +52,6 @@ class TeacherController extends Controller
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        if (!Hash::check($request->currentpwd, $teacher->password)) {
-            return redirect()->back();
-        }
         $attr = $request->all();
         if (!$request->password && !$request->password_confirmation) {
             // sama sama gak diset
@@ -67,7 +64,7 @@ class TeacherController extends Controller
         $teacher->update($attr);
 
         return redirect()->route('teacher');
-            // ->with('success', 'Teacher Berhasil Diubah');
+        // ->with('success', 'Teacher Berhasil Diubah');
     }
 
     public function delete(Teacher $teacher)

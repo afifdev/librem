@@ -16,7 +16,7 @@ class Student extends Authenticatable
     ];
     protected $guard = 'students';
     protected $fillable = [
-        'nis', 'password', 'name', 'gender', 'born_date', 'born_place', 'address', 'phone_number', 'start_year', 'grade_id', 'major_id'
+        'nis', 'password', 'name', 'gender', 'born_date', 'born_place', 'address', 'phone_number', 'start_year', 'grade_id', 'major_id', 'graduated',
     ];
 
     public function grade()

@@ -13,7 +13,12 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <label class="form-label" for="code">Kode</label>
-                <input class="form-control" type="text" name="code" value="{{$book->title}}">
+                <input class="form-control" type="text" name="code" value="{{old('code')??$book->code}}">
+                @error('code')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="kind_id">Tipe</label>
@@ -28,6 +33,11 @@
                     <option value="" hidden>Kosong</option>
                     @endforelse
                 </select>
+                @error('kind_id')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label for="category_id" class="form-label">Kategori</label>
@@ -38,6 +48,11 @@
                     <option value="" hidden>Kosong</option>
                     @endforelse
                 </select>
+                @error('category_id')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label for="writer_id" class="form-label">Penulis</label>
@@ -48,6 +63,11 @@
                     <option value="" hidden>Kosong</option>
                     @endforelse
                 </select>
+                @error('writer_id')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label for="publisher_id" class="form-label">Penerbit</label>
@@ -58,6 +78,11 @@
                     <option value="" hidden>Kosong</option>
                     @endforelse
                 </select>
+                @error('publisher_id')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label for="grade_id" class="form-label">Kelas</label>
@@ -69,22 +94,48 @@
                     <option value="" hidden>Kosong</option>
                     @endforelse
                 </select>
+                @error('grade_id')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="title">Judul</label>
-                <input class="form-control" type="text" name="title" value="{{$book->title}}">
+                <input class="form-control" type="text" name="title" value="{{old('title')??$book->title}}">
+                @error('title')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="description">Deskripsi</label>
-                <input class="form-control" type="text" name="description" value="{{$book->description}}">
+                <input class="form-control" type="text" name="description"
+                    value="{{old('description')??$book->description}}">
+                @error('description')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="isbn">ISBN</label>
-                <input class="form-control" type="text" name="isbn" value="{{$book->isbn}}">
+                <input class="form-control" type="text" name="isbn" value="{{old('isbn')??$book->isbn}}">
+                @error('isbn')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="image">Foto/Gambar</label>
                 <input class="form-control" type="file" name="image">
+                @error('image')
+                <div class="text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-success">Update</button>

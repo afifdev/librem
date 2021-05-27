@@ -33,20 +33,22 @@ class StoreBookRequest extends FormRequest
         $publishers = Publisher::all();
         $grades = Grade::all();
 
-        if (request()->publisher_id === 'tambah') {
-            $validation_publisher = 'required';
-        } else {
-            $validation_publisher = '';
-        }
-        if (request()->category_id !== 'kosong') {
-            $validation_category_id = 'required';
-        } else {
+        if (request()->custom_category) {
             $validation_category_id = '';
-        }
-        if (request()->writer_id !== 'kosong') {
-            $validation_writer_id = 'required';
         } else {
+            $validation_category_id = 'required';
+        }
+        if (request()->custom_writer) {
             $validation_writer_id = '';
+        } else {
+            $validation_writer_id = 'required';
+        }
+        if (request()->custom_publisher_name or request()->custom_publisher_year or request()->custom_publisher_city) {
+            $validation_publisher_id = '';
+            $validation_custom_publisher = 'required';
+        } else {
+            $validation_publisher_id = 'required';
+            $validation_custom_publisher = '';
         }
 
         return [
@@ -54,15 +56,15 @@ class StoreBookRequest extends FormRequest
             'kind_id' => 'required|in:1,2,3,4,5,6',
             'category_id' => $validation_category_id,
             'writer_id' => $validation_writer_id,
-            'publisher_id' => 'required',
+            'publisher_id' => $validation_publisher_id,
+            'grade_id' => 'required',
             'title' => 'required|max:255',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
             'isbn' => 'required',
-            // CUSTOM FIELD
-            'custom_publisher_name' => $validation_publisher,
-            'custom_publisher_year' => $validation_publisher,
-            'custom_publisher_city' => $validation_publisher,
+            'custom_publisher_name' => $validation_custom_publisher,
+            'custom_publisher_year' => $validation_custom_publisher,
+            'custom_publisher_city' => $validation_custom_publisher,
 
         ];
     }

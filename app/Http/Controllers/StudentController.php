@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Grade;
-use App\Models\Kind;
 use App\Models\Major;
+use App\Models\Kind;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -64,14 +64,7 @@ class StudentController extends Controller
 
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        $grade = Grade::find($request->grade_id);
-        $major = Major::find($request->major_id);
-        if (!Hash::check($request->currentpwd, $student->password)) {
-            return redirect()->back();
-        }
-        if (!$grade || !$major) {
-            return redirect()->back();
-        }
+
         $attr = $request->all();
         if (!$request->password && !$request->password_confirmation) {
             // sama sama gak diset
@@ -81,6 +74,7 @@ class StudentController extends Controller
             // ada password dan konfirmasi dan nilainya sama
             $attr['password'] = Hash::make($attr['password']);
         }
+        // dd($attr);
         $student->update($attr);
         return redirect()->route('student')
             ->with('success', 'Student Berhasil Diubah');

@@ -31,7 +31,7 @@ class StoreTeacherRequest extends FormRequest
             'born_date' => 'required',
             'born_place' => 'required',
             'address' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
         ];
     }
 }

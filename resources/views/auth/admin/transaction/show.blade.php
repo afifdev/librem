@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Tanggal Pinjam</label>
-                    <p class="form-control" readonly>{{$transaction->detail->take_date}}</p>
+                    <p class="form-control" readonly>{{$transaction->detail->take_  }}</p>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Tenggat Waktu</label>
@@ -35,6 +35,11 @@
                     <label class="form-label" for="return_date">Tanggal Kembali</label>
                     @if (!$transaction->detail->return_date)
                     <input type="date" name="return_date" class="form-control">
+                    @error('return_date')
+                    <div class="mt-2 text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     @else
                     <p class="form-control">{{$transaction->detail->return_date}}</p>
                     @endif
@@ -56,6 +61,11 @@
                     @else
                     <input type="text" name="debt_collected" class="form-control"
                         value="{{$transaction->detail->debt_collected}}">
+                    @error('debt_collected')
+                    <div class="mt-2 text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     @endif
                 </div>
                 <div class="col-md-4">

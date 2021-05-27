@@ -74,7 +74,7 @@ class BookController extends Controller
                 'kind_id' => $kind_id,
                 'name' => $request->custom_category,
             ]);
-            $attr['category_id'] = DB::getPdo()->lastInsertId();;
+            $attr['category_id'] = DB::getPdo()->lastInsertId();
         }
 
         // CUSTOM WRITER
@@ -86,13 +86,15 @@ class BookController extends Controller
         }
 
         // CUSTOM PUBLISHER
-        if ($request->publisher_id === 'tambah') {
+        if ($request->custom_publisher_name and $request->custom_publisher_year and $request->custom_publisher_city) {
             Publisher::create([
                 'name' => $request->custom_publisher_name,
                 'year' => $request->custom_publisher_year,
                 'city' => $request->custom_publisher_city,
             ]);
             $attr['publisher_id'] = DB::getPdo()->lastInsertId();
+        } else {
+            abort('404, Publisher ID Doesnt Exist');
         }
 
         // GRADE
