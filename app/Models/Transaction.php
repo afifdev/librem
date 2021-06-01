@@ -9,21 +9,26 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'book_code', 'student_nis', 'teacher_nip', 'status'
+        'book_code', 'student_nis', 'teacher_nip', 'admin_id', 'user_type', 'status'
     ];
-    public function book() {
+    public function book()
+    {
         return $this->belongsTo(Book::class, 'book_code', 'code');
     }
-    public function student() {
+    public function student()
+    {
         return $this->belongsTo(Student::class, 'student_nis', 'nis');
     }
-    public function teacher() {
+    public function teacher()
+    {
         return $this->belongsTo(Teacher::class, 'teacher_nip', 'nip');
     }
-    public function detail() {
+    public function detail()
+    {
         return $this->hasOne(Detail::class);
     }
-    public function admin() {
+    public function admin()
+    {
         return $this->belongsTo(Admin::class);
     }
 }
