@@ -82,6 +82,14 @@ class StudentController extends Controller
 
     public function delete(Student $student)
     {
+        $transactions = Transaction::where([['student_nis', '=',$student->nis], ['status','<>', 'done']]);
+        if ($transactions->count() > 0) {
+            return redirect()->route('student')->with('error', 'Student masih mempunyai transaksi');
+        }
+        $transactions = Transaction::where('student_nis','=',$student->nis)->get();
+        foreach($transactions as $transaction) {
+            $transaction->delete();
+        }
         $student->delete();
 
         return redirect()->route('student')
