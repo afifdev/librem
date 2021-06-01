@@ -12,8 +12,10 @@ class ProfileController extends Controller
     {
         if (auth()->guard('student')->check()) {
             $nis = auth()->guard('student')->user()->nis;
-            $user = DB::table('students')->whereRaw('cast(students.nis AS BIGINT)='.$nis)
-                ->join('transactions', 'transactions.student_nis', '=', DB::raw('cast(students.nis AS BIGINT)'))
+            // $user = DB::table('students')->whereRaw('cast(students.nis AS BIGINT)='.$nis) For Heroku
+            $user = DB::table('students')->where('student_nis','=',$nis)
+                // ->join('transactions', 'transactions.student_nis', '=', DB::raw('cast(students.nis AS BIGINT)')) For Heroku
+                ->join('transactions', 'transactions.student_nis', '=', 'students.nis')
                 ->join('details', 'details.transaction_id', '=', 'transactions.id')
                 ->join('admins', 'admins.id','=','transactions.admin_id')
                 ->join('books', 'books.code', '=', 'transactions.book_code')
@@ -22,8 +24,10 @@ class ProfileController extends Controller
             return view('auth.profile', compact('user'));
         } else if (auth()->guard('teacher')->check()) {
             $nip = auth()->guard('teacher')->user()->nip;
-            $user = DB::table('teachers')->whereRaw('cast(teachers.nip AS TEXT)='.$nip)
-                ->join('transactions', 'transactions.teacher_nip', '=', DB::raw('cast(teachers.nip AS BIGINT)'))
+            // $user = DB::table('teachers')->whereRaw('cast(teachers.nip AS TEXT)='.$nip) For Heroku
+            $user = DB::table('teachers')->where('teacher_nip','=', $nip)
+                // ->join('transactions', 'transactions.teacher_nip', '=', DB::raw('cast(teachers.nip AS BIGINT)')) For Heroku
+                ->join('transactions', 'transactions.teacher_nip', '=', 'teachers.nip')
                 ->join('admins', 'admins.id','=','transactions.admin_id')
                 ->join('details', 'details.transaction_id', '=', 'transactions.id')
                 ->join('books', 'books.code', '=', 'transactions.book_code')
