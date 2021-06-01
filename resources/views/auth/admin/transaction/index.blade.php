@@ -5,6 +5,19 @@
 @endsection
 @section('content')
 <div class="container" style="margin-left: 40vh">
+
+    @if(session()->has('success'))
+    <div class="alert alert-success mt-4">
+        {{ session()->get('success') }}
+    </div>
+    @endif
+
+    @if(session()->has('error'))
+    <div class="alert alert-danger mt-4">
+        {{ session()->get('error') }}
+    </div>
+    @endif
+
     <div class="mem-new py-4">
         <form action="{{route('trans_search')}}" method="POST">
             @method('post')
