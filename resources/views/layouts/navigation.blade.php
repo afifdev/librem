@@ -27,7 +27,7 @@
                         <a class="nav-link {{ request()->is('about') ? ' active':''}}"
                             href="{{ route('about') }}">About</a>
                     </li>
-                    
+
                     <!-- User profile -->
                     @if (auth()->guard('teacher')->check())
                     <li class="nav-item dropdown">
@@ -43,6 +43,15 @@
                         <a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {{ auth()->guard('student')->user()->name }} </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item custom-dropdown" href="{{ route('logout') }}">LOGOUT</a></li>
+                        </ul>
+                    </li>
+                    @elseif (auth()->guard('admin')->check())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ auth()->guard('admin')->user()->name }} </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item custom-dropdown" href="{{ route('logout') }}">LOGOUT</a></li>
                         </ul>
