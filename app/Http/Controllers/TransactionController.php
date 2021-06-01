@@ -19,7 +19,7 @@ class TransactionController extends Controller
     public function search()
     {
         $id = request()->search;
-        $transactions = Transaction::where('id','like','%'.$id.'%')->simplePaginate(20);
+        $transactions = Transaction::where('id', 'like', '%' . $id . '%')->simplePaginate(20);
         return view('auth.admin.transaction.index', compact('transactions'));
     }
     public function register()
@@ -79,7 +79,7 @@ class TransactionController extends Controller
         $book[0]->availability = 0;
         $book[0]->save();
 
-        return redirect()->route('transaction');
+        return redirect()->route('transaction')->with('success', 'Transaksi telah ditambahkan');
     }
 
     public function update(UpdateTransactionRequest $request, $id)
@@ -117,7 +117,7 @@ class TransactionController extends Controller
             }
             $detail->save();
         }
-        return redirect()->route('transaction');
+        return redirect()->route('transaction')->with('success', 'Transaksi telah diubah');
     }
 
     public function delete($id)
@@ -137,6 +137,6 @@ class TransactionController extends Controller
         $detail->delete();
         $transaction->delete();
 
-        return redirect()->route('transaction');
+        return redirect()->route('transaction')->with('success', 'Transaksi telah dihapus');
     }
 }

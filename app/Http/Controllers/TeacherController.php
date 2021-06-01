@@ -47,7 +47,7 @@ class TeacherController extends Controller
         $attr = $request->all();
         $attr['password'] = Hash::make($attr['password']);
         Teacher::create($attr);
-        return redirect()->route('teacher');
+        return redirect()->route('teacher')->with('success', 'Teacher Berhasil Ditambahkan');
     }
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
@@ -63,24 +63,23 @@ class TeacherController extends Controller
         }
         $teacher->update($attr);
 
-        return redirect()->route('teacher');
-        // ->with('success', 'Teacher Berhasil Diubah');
+        return redirect()->route('teacher')->with('success', 'Teacher Berhasil Diubah');
     }
 
     public function delete(Teacher $teacher)
     {
-        $transactions = Transaction::where([['teacher_nip', '=',$teacher->nip], ['status','<>', 'done']]);
+        $transactions = Transaction::where([['teacher_nip', '=', $teacher->nip], ['status', '<>', 'done']]);
         if ($transactions->count() > 0) {
             return redirect()->route('teacher')->with('error', 'Teacher masih mempunyai transaksi');
         }
-        $transactions = Transaction::where('teacher_nip','=',$teacher->nip)->get();
-        foreach($transactions as $transaction) {
+        $transactions = Transaction::where('teacher_nip', '=', $teacher->nip)->get();
+        foreach ($transactions as $transaction) {
             $transaction->delete();
         }
         $teacher->delete();
 
         return redirect()->route('teacher')
-            ->with('success', 'Teacher Berhasil Dihapuss');
+            ->with('success', 'Teacher Berhasil Dihapus');
     }
     public function handleSearch()
     {

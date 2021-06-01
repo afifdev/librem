@@ -5,9 +5,19 @@
 @endsection
 @section('content')
 <div class="container" style="margin-left: 40vh">
+
     @if(session()->has('success'))
-    <p> {{ session()->get('success') }}</p>
+    <div class="alert alert-success mt-4">
+        {{ session()->get('success') }}
+    </div>
     @endif
+
+    @if(session()->has('error'))
+    <div class="alert alert-danger mt-4">
+        {{ session()->get('error') }}
+    </div>
+    @endif
+
     <div class="mem-new py-4">
         <p><i class="fas fa-user-friends"></i>Teacher</p>
         <form action="{{route('teacher_search') }}" method="POST">
