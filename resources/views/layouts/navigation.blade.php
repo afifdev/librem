@@ -1,12 +1,7 @@
 <div class="route-home-navigation">
     <nav class="navbar fixed-top navbar-expand-lg navbar-light custom-nav">
         <div class="container-fluid">
-            @if (auth()->guard('teacher')->check() or auth()->guard('student')->check() or
-            auth()->guard('admin')->check())
             <h2 style="padding: 0 0 0 2rem;">Librem</h2>
-            @else
-            <a class="align-self-center justify-content-center cta" href="{{ route('login') }}">Login</a>
-            @endif
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,6 +27,7 @@
                         <a class="nav-link {{ request()->is('about') ? ' active':''}}"
                             href="{{ route('about') }}">About</a>
                     </li>
+                    
                     <!-- User profile -->
                     @if (auth()->guard('teacher')->check())
                     <li class="nav-item dropdown">
@@ -51,6 +47,9 @@
                             <li><a class="dropdown-item custom-dropdown" href="{{ route('logout') }}">LOGOUT</a></li>
                         </ul>
                     </li>
+                    @else
+                    <!-- Tombol login -->
+                    <a class="align-self-center justify-content-center cta m" href="{{ route('login') }}">Login</a>
                     @endif
                 </ul>
             </div>
