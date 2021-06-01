@@ -69,6 +69,14 @@ class TeacherController extends Controller
 
     public function delete(Teacher $teacher)
     {
+        $transactions = Transaction::where([['teacher_nip', '=',$teacher->nip], ['status','<>', 'done']]);
+        if ($transactions->count() > 0) {
+            return redirect()->route('teacher')->with('error', 'Teacher masih mempunyai transaksi');
+        }
+        $transactions = Transaction::where('teacher_nip','=',$teacher->nip)->get();
+        foreach($transactions as $transaction) {
+            $transaction->delete();
+        }
         $teacher->delete();
 
         return redirect()->route('teacher')
