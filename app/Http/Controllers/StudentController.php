@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\Grade;
-use App\Models\Major;
-use App\Models\Kind;
-use App\Models\Student;
-use App\Models\Transaction;
+use App\Models\{Grade, Major, Student, Transaction}; // simplify
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Pagination\simplePaginate;

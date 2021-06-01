@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+<<<<<<< HEAD
 use App\Models\Teacher;
 use App\Models\Transaction;
+=======
+use App\Models\{Teacher, Transaction}; // simplify
+>>>>>>> 105e972794a5ae981fecfc228129d9e9bb8f1f69
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

@@ -3,8 +3,6 @@
 <title>Edit Buku</title>
 <link rel="stylesheet" href="{{asset('css/admin/navigation.css')}}">
 @endsection
-
-
 @section('content')
 <div class="container py-4" style="margin-left: 40vh">
     <form action=" {{ route('book_update', $book->id) }}" method="post" enctype="multipart/form-data">
@@ -137,10 +135,9 @@
                 </div>
                 @enderror
             </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-success">Update</button>
-            </div>
         </div>
+        <br>
+        <button type="submit" class="btn btn-success">Update</button>
     </form>
 </div>
 @endsection
