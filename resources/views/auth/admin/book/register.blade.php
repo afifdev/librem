@@ -80,7 +80,7 @@
                 <label for="publisher_id" class="form-label">Penerbit</label>
                 <select name="publisher_id" id="publisher_id" class="form-select">
                     @forelse ($publishers as $publisher)
-                    <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+                    <option value="{{ $publisher->id }}">{{ $publisher->name }} {{ $publisher->year }}</option>
                     @empty
                     <option value="" hidden>Kosong</option>
                     @endforelse

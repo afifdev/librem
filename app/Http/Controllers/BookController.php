@@ -93,8 +93,6 @@ class BookController extends Controller
                 'city' => $request->custom_publisher_city,
             ]);
             $attr['publisher_id'] = DB::getPdo()->lastInsertId();
-        } else {
-            abort('404, Publisher ID Doesnt Exist');
         }
 
         // GRADE
